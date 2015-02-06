@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+
+    <style name="PatternView">
+        <item name="aspect">square</item>
+    </style>
+
+    <style name="PatternView.Holo">
+        <item name="regularColor">@android:color/white</item>
+        <item name="errorColor">@android:color/holo_red_light</item>
+        <item name="successColor">@android:color/holo_green_light</item>
+        <item name="pathColor">@android:color/white</item>
+        <item name="dotDrawableDefault">@drawable/pl_patternview_dot_default</item>
+        <item name="dotDrawableTouched">@drawable/pl_patternview_dot_touched</item>
+        <item name="circleDrawableDefault">@drawable/pl_patternview_circle_default_alpha</item>
+        <item name="circleDrawable">@drawable/pl_patternview_circle_alpha</item>
+        <item name="arrowUpDrawable">@drawable/pl_patternview_arrow_alpha</item>
+    </style>
+
+    <style name="PatternView.Holo.Light">
+        <item name="regularColor">@android:color/black</item>
+        <item name="pathColor">@android:color/black</item>
+    </style>
+</resources>

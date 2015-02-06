@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+
+    <string name="pl_cancel">Cancel</string>
+    <string name="pl_confirm">Confirm</string>
+    <string name="pl_confirm_pattern">Draw the pattern again to confirm</string>
+    <string name="pl_continue">Continue</string>
+    <string name="pl_draw_pattern">Draw an unlock pattern</string>
+    <string name="pl_forgot_pattern">Forgot pattern</string>
+    <string name="pl_pattern_confirmed">Your new unlock pattern</string>
+    <string name="pl_pattern_recorded">Pattern recorded</string>
+    <string name="pl_pattern_too_short">Connect at least %d dots, please redraw</string>
+    <string name="pl_recording_pattern">Release finger when done</string>
+    <string name="pl_redraw">Redraw</string>
+    <string name="pl_wrong_pattern">Wrong pattern, please retry</string>
+
+    <string name="pl_access_pattern_start">Pattern started</string>
+    <string name="pl_access_pattern_cleared">Pattern cleared</string>
+    <string name="pl_access_pattern_cell_added">Cell added</string>
+    <string name="pl_access_pattern_detected">Pattern completed</string>
+</resources>
