@@ -97,7 +97,7 @@ public class SampleSetPatternActivity extends SetPatternActivity {
     @Override
     protected void onSetPattern(List<PatternView.Cell> pattern) {
         String patternSha1 = PatternUtils.patternToSha1String(pattern);
-        // TODO: store patternSha1 in SharedPreferences.
+        // TODO: Save patternSha1 in SharedPreferences.
     }
 }
 ```
@@ -133,16 +133,16 @@ public class SampleConfirmPatternActivity extends ConfirmPatternActivity {
 
 ## Differences with android-lockpattern
 
-I know there is already a library named `android-lockpattern`, and I tried it for one day before I started writing "yet another".
+I know there is already a library named [android-lockpattern](https://code.google.com/p/android-lockpattern/), and I tried it for one day before I started writing this "yet another".
 
  So here are the major differences.
 
 * That project is hosted on Google Code using `hg`, while this project is hosted on GitHub using `git`.
 
-* That project is Eclipse based (?), while this project is written with Android Studio.
+* That project is Eclipse based (?), while this project is written using Android Studio.
 
 * That project is prefixing its resources using `alp_42447968`, while this project is prefixing its resources using `pl`, and I prefer the simplicity to that "security".
 
 * That project provides a bunch of mechanisms and extras for its `Activity`, none of which I found suitable for my use case (The `Intent` extra is replaced by `PendingIntent`, which I would prefer simplicity again here), while this project only provides a `Intent` extra and some methods to override to meet your need.
 
-* This project lacks documentation and sample application compared to that project, but generally you only need to read the names of those protected methods to learn its usage. (But I know documentation and sample apps are good, and I will complete them if more people are using this project.)
+* This project lacks some source code documentation and sample application compared to that project, but generally you only need to read the names of those protected methods to learn its usage. (But I know documentation and sample apps are good, and I will complete them if more people are using this project.)
