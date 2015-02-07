@@ -87,7 +87,7 @@ And built-in styles, as in `styles.xml`:
 
 ### Implementing
 
-As stated above, the common usage will be extending instead of giving `Intent` extras, because the actions to perform generally requires a `Context` or even a `Activity`, in which a simple callback can be difficult or even leaking `Activity` instances.
+As stated above, the common usage will be extending or checking result instead of giving `Intent` extras, because the actions to perform generally requires a `Context` or even a `Activity`, in which a simple callback can be difficult or even leaking `Activity` instances.
 
 Set pattern activity example:
 
@@ -143,7 +143,7 @@ I know there is already a library named [android-lockpattern](https://code.googl
 
 * That project is prefixing its resources using `alp_42447968`, while this project is prefixing its resources using `pl`, and I prefer simplicity to that "security".
 
-* That project provides a bunch of mechanisms and extras for its `Activity`, none of which I found suitable for my use case (The `Intent` extra is replaced by `PendingIntent`, which I would prefer simplicity again here if appropriate), while this project provides only an `Intent` extra and a bunch of methods to override to meet your need.
+* That project provides a bunch of mechanisms and extras for its `Activity`, none of which I found suitable for my use case (The `Intent` extra is replaced by `PendingIntent`, which I would prefer simplicity again here if appropriate), while this project provides a bunch of methods to override to meet your need.
 
 * This project lacks some source code documentation and sample application compared to that project, but generally you only need to read the names of those protected methods to learn its usage. (But I know documentation and sample apps are good, and I will complete them if more people are using this project.)
 

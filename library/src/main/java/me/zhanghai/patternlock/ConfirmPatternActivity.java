@@ -18,11 +18,7 @@ import java.util.List;
 public class ConfirmPatternActivity extends BasePatternActivity
         implements PatternView.OnPatternListener {
 
-    private static final String CLASS_NAME = ConfirmPatternActivity.class.getName();
-
     private static final String KEY_NUM_FAILED_ATTEMPTS = "num_failed_attempts";
-
-    public static final String EXTRA_INTENT = CLASS_NAME + ".intent";
 
     public static final int RESULT_FORGOT_PASSWORD = RESULT_FIRST_USER;
 
@@ -32,7 +28,7 @@ public class ConfirmPatternActivity extends BasePatternActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        messageText.setText(R.string.pl_draw_pattern);
+        messageText.setText(R.string.pl_draw_pattern_to_unlock);
         patternView.setInStealthMode(isStealthModeEnabled());
         patternView.setOnPatternListener(this);
         leftButton.setText(R.string.pl_cancel);
@@ -107,12 +103,6 @@ public class ConfirmPatternActivity extends BasePatternActivity
     }
 
     protected void onConfirmed() {
-
-        Intent intent = getIntent();
-        if (intent.hasExtra(EXTRA_INTENT)) {
-            startActivity(intent.<Intent>getParcelableExtra(EXTRA_INTENT));
-        }
-
         setResult(RESULT_OK);
         finish();
     }
