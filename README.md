@@ -146,3 +146,19 @@ I know there is already a library named [android-lockpattern](https://code.googl
 * That project provides a bunch of mechanisms and extras for its `Activity`, none of which I found suitable for my use case (The `Intent` extra is replaced by `PendingIntent`, which I would prefer simplicity again here if appropriate), while this project provides only an `Intent` extra and a bunch of methods to override to meet your need.
 
 * This project lacks some source code documentation and sample application compared to that project, but generally you only need to read the names of those protected methods to learn its usage. (But I know documentation and sample apps are good, and I will complete them if more people are using this project.)
+
+## License
+
+    Copyright 2015 Zhang Hai
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
