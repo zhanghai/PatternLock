@@ -14,7 +14,7 @@
     <style name="PatternView.Holo">
         <item name="regularColor">@android:color/white</item>
         <item name="errorColor">@android:color/holo_red_light</item>
-        <item name="successColor">@android:color/holo_green_light</item>
+        <item name="successColor">@android:color/white</item>
         <item name="pathColor">@android:color/white</item>
         <item name="dotDrawableDefault">@drawable/pl_patternview_dot_default</item>
         <item name="dotDrawableTouched">@drawable/pl_patternview_dot_touched</item>
@@ -25,6 +25,7 @@
 
     <style name="PatternView.Holo.Light">
         <item name="regularColor">@android:color/black</item>
+        <item name="successColor">@android:color/holo_green_light</item>
         <item name="pathColor">@android:color/black</item>
     </style>
 </resources>
