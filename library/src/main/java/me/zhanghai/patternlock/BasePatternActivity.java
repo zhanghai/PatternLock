@@ -23,6 +23,7 @@ public class BasePatternActivity extends Activity {
 
     private final Runnable clearPatternRunnable = new Runnable() {
         public void run() {
+            // clearPattern() resets display mode to DisplayMode.Correct.
             patternView.clearPattern();
         }
     };

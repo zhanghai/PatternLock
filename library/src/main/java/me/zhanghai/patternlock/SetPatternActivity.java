@@ -133,6 +133,7 @@ public class SetPatternActivity extends BasePatternActivity
         removeClearPatternRunnable();
 
         messageText.setText(R.string.pl_recording_pattern);
+        patternView.setDisplayMode(PatternView.DisplayMode.Correct);
         leftButton.setEnabled(false);
         rightButton.setEnabled(false);
     }
@@ -219,34 +220,27 @@ public class SetPatternActivity extends BasePatternActivity
         rightButton.setText(stage.rightButtonState.textId);
         rightButton.setEnabled(stage.rightButtonState.enabled);
 
-        if (stage.patternEnabled) {
-            patternView.enableInput();
-        } else {
-            patternView.disableInput();
-        }
+        patternView.setInputEnabled(stage.patternEnabled);
 
         switch (stage) {
             case Draw:
+                // clearPattern() resets display mode to DisplayMode.Correct.
                 patternView.clearPattern();
-                patternView.setDisplayMode(PatternView.DisplayMode.Correct);
                 break;
             case DrawTooShort:
                 patternView.setDisplayMode(PatternView.DisplayMode.Wrong);
                 postClearPatternRunnable();
                 break;
             case DrawValid:
-                patternView.setDisplayMode(PatternView.DisplayMode.Correct);
                 break;
             case Confirm:
                 patternView.clearPattern();
-                patternView.setDisplayMode(PatternView.DisplayMode.Correct);
                 break;
             case ConfirmWrong:
                 patternView.setDisplayMode(PatternView.DisplayMode.Wrong);
                 postClearPatternRunnable();
                 break;
             case ConfirmCorrect:
-                patternView.setDisplayMode(PatternView.DisplayMode.Correct);
                 break;
         }
 

@@ -5,7 +5,6 @@
 
 package me.zhanghai.patternlock;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -63,7 +62,11 @@ public class ConfirmPatternActivity extends BasePatternActivity
 
     @Override
     public void onPatternStart() {
+
         removeClearPatternRunnable();
+
+        // Set display mode to correct to ensure that pattern can be in stealth mode.
+        patternView.setDisplayMode(PatternView.DisplayMode.Correct);
     }
 
     @Override
@@ -71,20 +74,13 @@ public class ConfirmPatternActivity extends BasePatternActivity
 
     @Override
     public void onPatternDetected(List<PatternView.Cell> pattern) {
-
         if (isPatternCorrect(pattern)) {
-
-            patternView.setDisplayMode(PatternView.DisplayMode.Correct);
-
             onConfirmed();
-
         } else {
-
             messageText.setText(R.string.pl_wrong_pattern);
             patternView.setDisplayMode(PatternView.DisplayMode.Wrong);
             postClearPatternRunnable();
             ViewAccessibilityCompat.announceForAccessibility(messageText, messageText.getText());
-
             onWrongPattern();
         }
     }

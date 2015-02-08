@@ -106,7 +106,7 @@ public class PatternView extends View {
 
     private long mAnimatingPeriodStart;
 
-    private DisplayMode mPatternDisplayMode = DisplayMode.Correct;
+    private DisplayMode mDisplayMode = DisplayMode.Correct;
     private boolean mInputEnabled = true;
     private boolean mInStealthMode = false;
     private boolean mPatternInProgress = false;
@@ -339,6 +339,10 @@ public class PatternView extends View {
         mInStealthMode = inStealthMode;
     }
 
+    public boolean behavesInStealthMode() {
+        return mInStealthMode && mDisplayMode == DisplayMode.Correct;
+    }
+
     /**
      * Set the call back for pattern detection.
      * @param onPatternListener The call back.
@@ -365,6 +369,10 @@ public class PatternView extends View {
         setDisplayMode(displayMode);
     }
 
+    public DisplayMode getDisplayMode() {
+        return mDisplayMode;
+    }
+
     /**
      * Set the display mode of the current pattern.  This can be useful, for
      * instance, after detecting a pattern to tell this view whether change the
@@ -372,7 +380,7 @@ public class PatternView extends View {
      * @param displayMode The display mode.
      */
     public void setDisplayMode(DisplayMode displayMode) {
-        mPatternDisplayMode = displayMode;
+        mDisplayMode = displayMode;
         if (displayMode == DisplayMode.Animate) {
             if (mPattern.size() == 0) {
                 throw new IllegalStateException("you must have a pattern to "
@@ -428,7 +436,7 @@ public class PatternView extends View {
     private void resetPattern() {
         mPattern.clear();
         clearPatternDrawLookup();
-        mPatternDisplayMode = DisplayMode.Correct;
+        mDisplayMode = DisplayMode.Correct;
         invalidate();
     }
 
@@ -443,19 +451,17 @@ public class PatternView extends View {
         }
     }
 
-    /**
-     * Disable input (for instance when displaying a message that will
-     * timeout so user doesn't get view into messy state).
-     */
-    public void disableInput() {
-        mInputEnabled = false;
+    public boolean isInputEnabled() {
+        return mInputEnabled;
     }
 
     /**
-     * Enable input.
+     * Enable or disable input.
+     * (for instance when displaying a message that will timeout so user doesn't get view into messy
+     * state).
      */
-    public void enableInput() {
-        mInputEnabled = true;
+    public void setInputEnabled(boolean inputEnabled) {
+        mInputEnabled = inputEnabled;
     }
 
     @Override
@@ -773,7 +779,7 @@ public class PatternView extends View {
         final Cell hitCell = detectAndAddHit(x, y);
         if (hitCell != null) {
             mPatternInProgress = true;
-            mPatternDisplayMode = DisplayMode.Correct;
+            mDisplayMode = DisplayMode.Correct;
             notifyPatternStarted();
         } else if (mPatternInProgress) {
             mPatternInProgress = false;
@@ -813,7 +819,7 @@ public class PatternView extends View {
         final int count = pattern.size();
         final boolean[][] drawLookup = mPatternDrawLookup;
 
-        if (mPatternDisplayMode == DisplayMode.Animate) {
+        if (mDisplayMode == DisplayMode.Animate) {
 
             // figure out which circles to draw
 
@@ -886,7 +892,7 @@ public class PatternView extends View {
         // TODO: the path should be created and cached every time we hit-detect a cell
         // only the last segment of the path should be computed here
         // draw the path of the pattern (unless we are in stealth mode)
-        final boolean drawPath = !mInStealthMode;
+        final boolean drawPath = !behavesInStealthMode();
 
         // draw the arrows associated with the path (unless we are in stealth mode)
         if (drawPath) {
@@ -935,7 +941,7 @@ public class PatternView extends View {
             }
 
             // add last in progress section
-            if ((mPatternInProgress || mPatternDisplayMode == DisplayMode.Animate)
+            if ((mPatternInProgress || mDisplayMode == DisplayMode.Animate)
                     && anyCircles) {
                 currentPath.lineTo(mInProgressX, mInProgressY);
             }
@@ -947,7 +953,7 @@ public class PatternView extends View {
         if (mPatternInProgress) {
             mPaint.setColorFilter(mRegularColorFilter);
         } else {
-            boolean success = mPatternDisplayMode != DisplayMode.Wrong;
+            boolean success = mDisplayMode != DisplayMode.Wrong;
             mPaint.setColorFilter(success ? mSuccessColorFilter : mErrorColorFilter);
         }
 
@@ -994,7 +1000,7 @@ public class PatternView extends View {
         Bitmap outerCircle;
         Bitmap innerCircle;
         ColorFilter outerFilter;
-        if (!partOfPattern || mInStealthMode) {
+        if (!partOfPattern || behavesInStealthMode()) {
             // unselected circle
             outerCircle = mBitmapCircleDefault;
             innerCircle = mBitmapDotDefault;
@@ -1004,19 +1010,19 @@ public class PatternView extends View {
             outerCircle = mBitmapCircle;
             innerCircle = mBitmapDotTouched;
             outerFilter = mRegularColorFilter;
-        } else if (mPatternDisplayMode == DisplayMode.Wrong) {
+        } else if (mDisplayMode == DisplayMode.Wrong) {
             // the pattern is wrong
             outerCircle = mBitmapCircle;
             innerCircle = mBitmapDotDefault;
             outerFilter = mErrorColorFilter;
-        } else if (mPatternDisplayMode == DisplayMode.Correct ||
-                mPatternDisplayMode == DisplayMode.Animate) {
+        } else if (mDisplayMode == DisplayMode.Correct ||
+                mDisplayMode == DisplayMode.Animate) {
             // the pattern is correct
             outerCircle = mBitmapCircle;
             innerCircle = mBitmapDotDefault;
             outerFilter = mSuccessColorFilter;
         } else {
-            throw new IllegalStateException("unknown display mode " + mPatternDisplayMode);
+            throw new IllegalStateException("unknown display mode " + mDisplayMode);
         }
 
         final int width = mBitmapWidth;
@@ -1048,7 +1054,7 @@ public class PatternView extends View {
         Parcelable superState = super.onSaveInstanceState();
         return new SavedState(superState,
                 PatternUtils.patternToString(mPattern),
-                mPatternDisplayMode.ordinal(),
+                mDisplayMode.ordinal(),
                 mInputEnabled, mInStealthMode);
     }
 
@@ -1059,7 +1065,7 @@ public class PatternView extends View {
         setPattern(
                 DisplayMode.Correct,
                 PatternUtils.stringToPattern(ss.getSerializedPattern()));
-        mPatternDisplayMode = DisplayMode.values()[ss.getDisplayMode()];
+        mDisplayMode = DisplayMode.values()[ss.getDisplayMode()];
         mInputEnabled = ss.isInputEnabled();
         mInStealthMode = ss.isInStealthMode();
     }
