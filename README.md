@@ -4,21 +4,19 @@ An Android library for pattern lock.
 
 ## PatternLock or LockPattern?
 
-The original view in AOSP is named `LockPatternView`, however I believe it is named so because it displays the (screen lock) pattern, instead of the pattern as a lock. Since this library is to provide the pattern as a locking mechanism, I'd prefer naming it `PatternLock`, and for simplicity the view is renamed to be `PatternView`.
+The original view in AOSP is named `LockPatternView`, however I believe it is named so because it displays the (screen lock) pattern, instead of the pattern as a lock. Since this library is to provide the pattern as a locking mechanism, I'd prefer naming it `PatternLock`, and for simplicity， the view is renamed to `PatternView`.
 
 ## Design
 
-This library aims to provide the basic but extensible build blocks for implementing pattern lock mechanism in Android app. So the common usage will be extending the basic activities classes provided and overriding methods according to your need.
+This library aims to provide the basic but extensible building blocks for implementing pattern lock mechanism in an Android app. So the common usage will be extending the base Activity classes provided and overriding methods according to your need.
 
-This library also aims to be elegant. Code taken from AOSP was slightly refactored and renamed to be clear, and the `PatternView` now utilizes the Android resource system for customization.
+This library also aims to be elegant. Code taken from AOSP was slightly refactored and renamed to be clear, and the `PatternView` now utilizes the Android resource system for customization. Moreover, tweaks for stealth mode and haptic feedback is done for better behavior.
 
-Currently this library is partly tailored to my own needs.
+Currently this library is partly tailored to my own needs:
 
 * The `PatternView` code is taken just before the Material design adjusted its animation and styling, which keeps its Holo style, consistent to my aesthetics and production app.
 
 * This library is currently ICS-compatible, since Android 2.x are phasing out day by day, and I don't need to support them. (But it can be refactored to support older versions if anyone has the time.)
-
-*  This library defaults its language to zh-CN, because my production app primarily focuses on Chinese users, but this behavior can be changed by swapping `strings.xml`.
 
 ## Usage
 
@@ -26,7 +24,7 @@ Currently this library is partly tailored to my own needs.
 
 First of all, you need to include the default styling in your theme, by adding:
 
-``` xml
+```xml
 <item name="patternViewStyle">@style/PatternView.Holo</item>
 <!-- Or PatternView.Holo.Dark, or your own style extending these two or not. -->
 ```
@@ -35,7 +33,7 @@ Or you can utilize the resource overriding trick by copying the `layout/base_pat
 
 Available `PatternView` attributes are, as in `attrs.xml`:
 
-``` xml
+```xml
 <declare-styleable name="PatternView">
     <!-- Defines the aspect to use when drawing PatternView. -->
     <attr name="aspect">
@@ -62,7 +60,7 @@ Available `PatternView` attributes are, as in `attrs.xml`:
 
 And built-in styles, as in `styles.xml`:
 
-``` xml
+```xml
 <style name="PatternView">
     <item name="aspect">square</item>
 </style>
@@ -91,7 +89,7 @@ As stated above, the common usage will be extending or checking result instead o
 
 Set pattern activity example:
 
-``` java
+```java
 public class SampleSetPatternActivity extends SetPatternActivity {
 
     @Override
@@ -104,17 +102,8 @@ public class SampleSetPatternActivity extends SetPatternActivity {
 
 Confirm pattern activity example:
 
-``` java
+```java
 public class SampleConfirmPatternActivity extends ConfirmPatternActivity {
-
-    @Override
-    protected void onForgotPassword() {
-
-        startActivity(new Intent(this, YourResetPatternActivity.class));
-
-        // Finish with RESULT_FORGOT_PASSWORD.
-        super.onForgotPassword();
-    }
 
     @Override
     protected boolean isStealthModeEnabled() {
@@ -126,10 +115,21 @@ public class SampleConfirmPatternActivity extends ConfirmPatternActivity {
     protected boolean isPatternCorrect(List<PatternView.Cell> pattern) {
         // TODO: Get saved pattern sha1.
         String patternSha1 = null;
-        return TextUtils.equals(PatternUtils.patternToSha1(pattern), patternSha1);
+        return TextUtils.equals(PatternUtils.patternToSha1String(pattern), patternSha1);
+    }
+
+    @Override
+    protected void onForgotPassword() {
+
+        startActivity(new Intent(this, YourResetPatternActivity.class));
+
+        // Finish with RESULT_FORGOT_PASSWORD.
+        super.onForgotPassword();
     }
 }
 ```
+
+Note that protected fields inherited from `BasePatternActivity`, such as `messageText` and `patternView`, are also there ready for your customization.
 
 ## Differences with android-lockpattern
 
@@ -139,13 +139,13 @@ I know there is already a library named [android-lockpattern](https://code.googl
 
 * That project is hosted on Google Code using `hg`, while this project is hosted on GitHub using `git`.
 
-* That project seems to be Eclipse based, while this project is written using Android Studio.
+* That project is Eclipse based, while this project is developed using Android Studio.
 
 * That project is prefixing its resources using `alp_42447968`, while this project is prefixing its resources using `pl`, and I prefer simplicity to that "security".
 
-* That project provides a bunch of mechanisms and extras for its `Activity`, none of which I found suitable for my use case (The `Intent` extra is replaced by `PendingIntent`, which I would prefer simplicity again here if appropriate), while this project provides a bunch of methods to override to meet your need.
+* That project provides a bunch of mechanisms and extras for its `Activity` (and with some private methods :( ), none of which I found suitable for my use case, while this project provides a bunch of methods to override to meet your need.
 
-* This project lacks some source code documentation and sample application compared to that project, but generally you only need to read the names of those protected methods to learn its usage. (But I know documentation and sample apps are good, and I will complete them if more people are using this project.)
+* That project has a demo but it is close-sourced, while this project provides an open source sample application with a working pattern lock mechanism implementation.
 
 ## License
 
