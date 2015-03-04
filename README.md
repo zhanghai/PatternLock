@@ -22,13 +22,15 @@ Currently this library is partly tailored to my own needs:
 
 ## Usage
 
+Here are some detailed usage documentation, and you can always refer to the sample app source for a working implementation.
+
 ### Styling
 
 First of all, you need to include the default styling in your theme, by adding:
 
 ```xml
 <item name="patternViewStyle">@style/PatternView.Holo</item>
-<!-- Or PatternView.Holo.Dark, or your own style extending these two or not. -->
+<!-- Or PatternView.Holo.Light, or your own style extending these two or not. -->
 ```
 
 Or you can utilize the resource overriding trick by copying the `layout/base_pattern_activity.xml` from the library source to your application source, and modify it there (for instance PatternView attributes). Changes will override the original layout in this library.
