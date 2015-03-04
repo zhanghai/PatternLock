@@ -2,7 +2,7 @@
 
 An Android library for pattern lock.
 
-![Sample](./image/sample.png)
+![Sample](./image/sample_small.png)
 
 ## PatternLock or LockPattern?
 
