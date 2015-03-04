@@ -8,7 +8,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "me.zhanghai.patternlock.sample"
         minSdkVersion 14
@@ -16,11 +15,20 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        release {
+            storeFile file('../../github.jks')
+            storePassword System.console() != null ? System.console().readLine("\nKeystore password: ") : ""
+            keyAlias 'patternlock'
+            keyPassword System.console() != null ? System.console().readLine("\nKey password: ") : ""
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
