@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.zhanghai.patternlock.sample">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/launcher_icon"
+        android:label="@string/app_name"
+        android:logo="@mipmap/logo"
+        android:name=".app.SampleApplication"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".app.MainActivity"
+            android:label="@string/main_title"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".app.PatternLockActivity"
+            android:label="@string/pattern_lock_title"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".app.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".app.SetPatternActivity"
+            android:label="@string/set_pattern_title"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".app.PatternLockActivity" />
+        </activity>
+
+        <activity
+            android:name=".app.ConfirmPatternActivity"
+            android:label="@string/confirm_pattern_title"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".app.ResetPatternActivity"
+            android:label="@string/reset_pattern_title"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".app.AboutActivity"
+            android:label="@string/about_title"
+            android:launchMode="singleTop" />
+    </application>
+</manifest>

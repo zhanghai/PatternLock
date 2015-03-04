@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+
+    <string name="app_name">PatternLock Sample</string>
+
+    <string name="main_title">@string/app_name</string>
+    <string name="pref_title_pattern_lock">Pattern lock</string>
+    <string name="pref_title_theme">Theme</string>
+    <string name="pref_summary_theme">[ %1$s ]</string>
+    <string name="pref_dialog_title_theme">Select theme</string>
+    <string-array name="pref_entries_theme">
+        <item>Holo Dark</item>
+        <item>Holo Light</item>
+    </string-array>
+    <string name="pref_title_about">About</string>
+
+    <string name="pattern_lock_title">Pattern lock</string>
+    <string name="pref_title_set_pattern">Set unlock pattern</string>
+    <string name="pref_summary_set_pattern_none">[ No pattern set ]</string>
+    <string name="pref_summary_set_pattern_has">[ Pattern set ]</string>
+    <string name="pref_title_pattern_visible">Make pattern visible</string>
+    <string name="pref_summary_pattern_visible_off">Pattern will be hidden when drawing</string>
+    <string name="pref_summary_pattern_visible_on">Pattern will be visible when drawing</string>
+    <string name="pref_title_clear_pattern">Clear unlock pattern</string>
+    <string name="pref_dialog_message_clear_pattern">Clear unlock pattern?</string>
+    <string name="pattern_cleared">Unlock pattern has been cleared</string>
+
+    <string name="set_pattern_title">Set unlock pattern</string>
+    <string name="confirm_pattern_title">Confirm your unlock pattern</string>
+    <string name="reset_pattern_title">Confirm password to reset pattern</string>
+    <string name="reset_pattern_message">This is only a demo.\n\nPress "OK" to reset your unlock pattern.</string>
+    <string name="pattern_reset">Unlock pattern has been reset</string>
+
+    <string name="about_title">About</string>
+    <string name="about_name">PatternLock Library</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_credit">Zhang Hai 2015</string>
+    <string name="about_github"><a href="https://github.com/DreaminginCodeZH/PatternLock">View on GitHub</a></string>
+</resources>

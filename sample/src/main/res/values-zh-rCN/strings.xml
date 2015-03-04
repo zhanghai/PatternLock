@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+
+    <string name="app_name">PatternLock 示例程序</string>
+
+    <string name="main_title">@string/app_name</string>
+    <string name="pref_title_pattern_lock">图案解锁</string>
+    <string name="pref_title_theme">主题</string>
+    <string name="pref_dialog_title_theme">选择主题</string>
+    <string-array name="pref_entries_theme">
+        <item>Holo Dark</item>
+        <item>Holo Light</item>
+    </string-array>
+    <string name="pref_title_about">关于</string>
+
+    <string name="pattern_lock_title">图案解锁</string>
+    <string name="pref_title_set_pattern">设置解锁图案</string>
+    <string name="pref_summary_set_pattern_none">[ 未设置图案 ]</string>
+    <string name="pref_summary_set_pattern_has">[ 已设置图案 ]</string>
+    <string name="pref_title_pattern_visible">使图案可见</string>
+    <string name="pref_summary_pattern_visible_off">将在绘制时隐藏图案</string>
+    <string name="pref_summary_pattern_visible_on">将在绘制时显示图案</string>
+    <string name="pref_title_clear_pattern">清除解锁图案</string>
+    <string name="pref_dialog_message_clear_pattern">要清除解锁图案吗？</string>
+    <string name="pattern_cleared">已清除解锁图案</string>
+
+    <string name="set_pattern_title">设置解锁图案</string>
+    <string name="confirm_pattern_title">确认解锁图案</string>
+    <string name="reset_pattern_title">确认密码以重设图案</string>
+    <string name="reset_pattern_message">这只是一个示例程序。\n\n点击“确定”以重置解锁图案。</string>
+    <string name="pattern_reset">已重置解锁图案</string>
+
+    <string name="about_title">关于</string>
+    <string name="about_name">PatternLock 库</string>
+    <string name="about_version">版本 %1$s</string>
+    <string name="about_credit">张海 2015</string>
+    <string name="about_github"><a href="https://github.com/DreaminginCodeZH/PatternLock">在 GitHub 上浏览</a></string>
+</resources>

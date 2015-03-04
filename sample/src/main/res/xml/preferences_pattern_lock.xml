@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Key is specified here for dependency to work. -->
+    <me.zhanghai.patternlock.sample.preference.SetPatternPreference
+        android:key="pref_key_set_pattern"
+        android:persistent="false"
+        android:title="@string/pref_title_set_pattern" />
+
+    <CheckBoxPreference
+        android:key="pref_key_pattern_visible"
+        android:defaultValue="true"
+        android:dependency="pref_key_set_pattern"
+        android:summaryOff="@string/pref_summary_pattern_visible_off"
+        android:summaryOn="@string/pref_summary_pattern_visible_on"
+        android:title="@string/pref_title_pattern_visible" />
+
+    <me.zhanghai.patternlock.sample.preference.ClearPatternPreference
+        android:title="@string/pref_title_clear_pattern"
+        android:dependency="pref_key_set_pattern"
+        android:dialogMessage="@string/pref_dialog_message_clear_pattern" />
+</PreferenceScreen>

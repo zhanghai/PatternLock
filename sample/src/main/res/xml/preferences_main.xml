@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:title="@string/pref_title_pattern_lock">
+        <intent
+            android:targetPackage="me.zhanghai.patternlock.sample"
+            android:targetClass="me.zhanghai.patternlock.sample.app.PatternLockActivity" />
+    </Preference>
+
+    <me.zhanghai.patternlock.sample.preference.ListPreferenceCompat
+        android:key="pref_key_theme"
+        android:defaultValue="0"
+        android:dialogTitle="@string/pref_dialog_title_theme"
+        android:entries="@array/pref_entries_theme"
+        android:entryValues="@array/pref_entry_values_theme"
+        android:summary="@string/pref_summary_theme"
+        android:title="@string/pref_title_theme" />
+
+    <Preference
+        android:title="@string/pref_title_about">
+        <intent
+            android:targetPackage="me.zhanghai.patternlock.sample"
+            android:targetClass="me.zhanghai.patternlock.sample.app.AboutActivity" />
+    </Preference>
+</PreferenceScreen>
