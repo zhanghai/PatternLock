@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2015 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+
+    <string name="pl_cancel">取消</string>
+    <string name="pl_confirm">确认</string>
+    <string name="pl_confirm_pattern">再次绘制图案以确认</string>
+    <string name="pl_continue">继续</string>
+    <string name="pl_draw_pattern">绘制解锁图案</string>
+    <string name="pl_draw_pattern_to_unlock">绘制图案以解锁</string>
+    <string name="pl_forgot_pattern">忘记图案</string>
+    <string name="pl_pattern_confirmed">您的新解锁图案</string>
+    <string name="pl_pattern_recorded">已记录图案</string>
+    <string name="pl_pattern_too_short">至少连接 %d 个点，请重画</string>
+    <string name="pl_recording_pattern">完成后松开手指</string>
+    <string name="pl_redraw">重画</string>
+    <string name="pl_wrong_pattern">图案错误，请重试</string>
+
+    <string name="pl_access_pattern_start">开始绘制图案</string>
+    <string name="pl_access_pattern_cleared">已清除图案</string>
+    <string name="pl_access_pattern_cell_added">已添加单元格</string>
+    <string name="pl_access_pattern_detected">已完成绘制图案</string>
+</resources>
