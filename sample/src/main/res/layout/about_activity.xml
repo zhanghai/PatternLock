@@ -29,6 +29,7 @@
         android:id="@+id/about_version_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="?android:attr/textColorSecondary" />
 
