@@ -83,7 +83,7 @@ public class PatternView extends View {
      * This can be used to avoid updating the display for very small motions or noisy panels.
      * It didn't seem to have much impact on the devices tested, so currently set to 0.
      */
-    private static final float DRAG_THRESHHOLD = 0.0f;
+    private static final float DRAG_THRESHOLD = 0.0f;
 
     private OnPatternListener mOnPatternListener;
     private ArrayList<Cell> mPattern = new ArrayList<>(9);
@@ -140,7 +140,7 @@ public class PatternView extends View {
 
 
     /**
-     * Represents a cell in the 3 X 3 matrix of the unpattern view.
+     * Represents a cell in the 3 X 3 matrix of the pattern view.
      */
     public static class Cell {
         int row;
@@ -227,7 +227,7 @@ public class PatternView extends View {
     /**
      * The call back interface for detecting patterns entered by the user.
      */
-    public static interface OnPatternListener {
+    public interface OnPatternListener {
 
         /**
          * A new pattern has begun.
@@ -708,7 +708,7 @@ public class PatternView extends View {
             // note current x and y for rubber banding of in progress patterns
             final float dx = Math.abs(x - mInProgressX);
             final float dy = Math.abs(y - mInProgressY);
-            if (dx > DRAG_THRESHHOLD || dy > DRAG_THRESHHOLD) {
+            if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) {
                 invalidateNow = true;
             }
 
@@ -981,9 +981,9 @@ public class PatternView extends View {
         float sx = Math.min(mSquareWidth / mBitmapWidth, 1.0f);
         float sy = Math.min(mSquareHeight / mBitmapHeight, 1.0f);
         mArrowMatrix.setTranslate(leftX + offsetX, topY + offsetY); // transform to cell position
-        mArrowMatrix.preTranslate(mBitmapWidth/2, mBitmapHeight/2);
+        mArrowMatrix.preTranslate(mBitmapWidth / 2, mBitmapHeight / 2);
         mArrowMatrix.preScale(sx, sy);
-        mArrowMatrix.preTranslate(-mBitmapWidth/2, -mBitmapHeight/2);
+        mArrowMatrix.preTranslate(-mBitmapWidth / 2, -mBitmapHeight / 2);
         mArrowMatrix.preRotate(angle, cellWidth / 2.0f, cellHeight / 2.0f);  // rotate about cell center
         mArrowMatrix.preTranslate((cellWidth - mBitmapArrowUp.getWidth()) / 2.0f, 0.0f); // translate to 12:00 pos
         canvas.drawBitmap(mBitmapArrowUp, mArrowMatrix, mPaint);
