@@ -26,7 +26,6 @@ import android.os.Debug;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -68,6 +67,7 @@ import java.util.List;
  * Is also capable of displaying a static pattern in "in progress", "wrong" or
  * "correct" states.
  */
+@SuppressWarnings("unused")
 public class PatternView extends View {
 
     // Aspect to use when rendering this view
@@ -104,7 +104,7 @@ public class PatternView extends View {
     private static final String TAG = "LockPatternView";
 
     private OnPatternListener mOnPatternListener;
-    private final ArrayList<Cell> mPattern = new ArrayList<Cell>(9);
+    private final ArrayList<Cell> mPattern = new ArrayList<>(9);
 
     /**
      * Lookup table for the circles of the pattern we are currently drawing.
@@ -479,21 +479,21 @@ public class PatternView extends View {
     }
 
     private void notifyPatternStarted() {
-        sendAccessEvent(R.string.lockscreen_access_pattern_start);
+        sendAccessEvent(R.string.pl_access_pattern_start);
         if (mOnPatternListener != null) {
             mOnPatternListener.onPatternStart();
         }
     }
 
     private void notifyPatternDetected() {
-        sendAccessEvent(R.string.lockscreen_access_pattern_detected);
+        sendAccessEvent(R.string.pl_access_pattern_detected);
         if (mOnPatternListener != null) {
             mOnPatternListener.onPatternDetected(mPattern);
         }
     }
 
     private void notifyPatternCleared() {
-        sendAccessEvent(R.string.lockscreen_access_pattern_cleared);
+        sendAccessEvent(R.string.pl_access_pattern_cleared);
         if (mOnPatternListener != null) {
             mOnPatternListener.onPatternCleared();
         }
@@ -563,9 +563,8 @@ public class PatternView extends View {
         mExploreByTouchHelper.invalidateRoot();
     }
 
-    private int resolveMeasured(int measureSpec, int desired)
-    {
-        int result = 0;
+    private int resolveMeasured(int measureSpec, int desired) {
+        int result;
         int specSize = MeasureSpec.getSize(measureSpec);
         switch (MeasureSpec.getMode(measureSpec)) {
             case MeasureSpec.UNSPECIFIED:
@@ -1134,6 +1133,7 @@ public class PatternView extends View {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     protected Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
         return new SavedState(superState,
@@ -1154,7 +1154,7 @@ public class PatternView extends View {
     }
 
     /**
-     * The parecelable for saving and restoring a lock pattern view.
+     * The parcelable for saving and restoring a lock pattern view.
      */
     private static class SavedState extends BaseSavedState {
 
@@ -1245,7 +1245,7 @@ public class PatternView extends View {
                 this.description = description;
             }
             CharSequence description;
-        };
+        }
 
         public PatternExploreByTouchHelper(View forView) {
             super(forView);
@@ -1255,8 +1255,7 @@ public class PatternView extends View {
         protected int getVirtualViewAt(float x, float y) {
             // This must use the same hit logic for the screen to ensure consistency whether
             // accessibility is on or off.
-            int id = getVirtualViewIdForHit(x, y);
-            return id;
+            return getVirtualViewIdForHit(x, y);
         }
 
         @Override
@@ -1291,7 +1290,7 @@ public class PatternView extends View {
             super.onPopulateAccessibilityEvent(host, event);
             if (!mPatternInProgress) {
                 CharSequence contentDescription = getContext().getText(
-                        com.android.internal.R.string.lockscreen_access_pattern_area);
+                        R.string.pl_access_pattern_area);
                 event.setContentDescription(contentDescription);
             }
         }
@@ -1385,20 +1384,25 @@ public class PatternView extends View {
         }
 
         private boolean shouldSpeakPassword() {
-            final boolean speakPassword = Settings.Secure.getIntForUser(
-                    getContext().getContentResolver(), Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD, 0,
-                    UserHandle.USER_CURRENT_OR_SELF) != 0;
-            final boolean hasHeadphones = mAudioManager != null ?
-                    (mAudioManager.isWiredHeadsetOn() || mAudioManager.isBluetoothA2dpOn())
-                    : false;
+            // HACK: Settings.Secure.getIntForUser() is hidden, so we can only use
+            // Settings.Secure.getInt() instead.
+            //final boolean speakPassword = Settings.Secure.getIntForUser(
+            //        getContext().getContentResolver(),
+            //        Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD, 0,
+            //        UserHandle.USER_CURRENT_OR_SELF) != 0;
+            final boolean speakPassword = Settings.Secure.getInt(getContext().getContentResolver(),
+                    Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD, 0) != 0;
+            @SuppressWarnings("deprecation")
+            final boolean hasHeadphones = mAudioManager != null
+                    && (mAudioManager.isWiredHeadsetOn() || mAudioManager.isBluetoothA2dpOn());
             return speakPassword || hasHeadphones;
         }
 
         private CharSequence getTextForVirtualView(int virtualViewId) {
             final Resources res = getResources();
-            return shouldSpeakPassword() ? res.getString(
-                    R.string.lockscreen_access_pattern_cell_added_verbose, virtualViewId)
-                    : res.getString(R.string.lockscreen_access_pattern_cell_added);
+            return shouldSpeakPassword() ?
+                    res.getString(R.string.pl_access_pattern_cell_added_verbose, virtualViewId)
+                    : res.getString(R.string.pl_access_pattern_cell_added);
         }
 
         /**

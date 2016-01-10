@@ -47,12 +47,13 @@ public class PatternUtils {
         return pattern;
     }
 
-    @Deprecated
+    /**
+     * @deprecated Use {@link #patternToSha1String(List)} instead for better security.
+     */
     public static String patternToString(List<PatternView.Cell> pattern) {
         return bytesToString(patternToBytes(pattern));
     }
 
-    @Deprecated
     public static List<PatternView.Cell> stringToPattern(String string) {
         return bytesToPattern(stringToBytes(string));
     }
