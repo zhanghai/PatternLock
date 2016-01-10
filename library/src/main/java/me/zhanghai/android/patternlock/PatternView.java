@@ -28,6 +28,7 @@ import android.os.Parcelable;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat;
 import android.support.v4.widget.ExploreByTouchHelper;
@@ -68,6 +69,7 @@ import java.util.List;
  * "correct" states.
  */
 public class PatternView extends View {
+
     // Aspect to use when rendering this view
     private static final int ASPECT_SQUARE = 0; // View will be the minimum of width/height
     private static final int ASPECT_LOCK_WIDTH = 1; // Fixed width; height will be minimum of (w,h)
@@ -332,7 +334,7 @@ public class PatternView extends View {
         mLinearOutSlowInInterpolator =
                 AnimationUtils.loadInterpolator(context, android.R.interpolator.linear_out_slow_in);
         mExploreByTouchHelper = new PatternExploreByTouchHelper(this);
-        setAccessibilityDelegate(mExploreByTouchHelper);
+        ViewCompat.setAccessibilityDelegate(this, mExploreByTouchHelper);
         mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
     }
 
@@ -390,6 +392,7 @@ public class PatternView extends View {
      * @param pattern The pattern.
      */
     public void setPattern(DisplayMode displayMode, List<Cell> pattern) {
+
         mPattern.clear();
         mPattern.addAll(pattern);
         clearPatternDrawLookup();
@@ -550,6 +553,7 @@ public class PatternView extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+
         final int width = w - getPaddingLeft() - getPaddingRight();
         mSquareWidth = width / 3.0f;
 
@@ -579,6 +583,7 @@ public class PatternView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
         final int minimumWidth = getSuggestedMinimumWidth();
         final int minimumHeight = getSuggestedMinimumHeight();
         int viewWidth = resolveMeasured(widthMeasureSpec, minimumWidth);
@@ -607,6 +612,7 @@ public class PatternView extends View {
      * @param y The y coordinate.
      */
     private Cell detectAndAddHit(float x, float y) {
+
         final Cell cell = checkForNewHit(x, y);
         if (cell != null) {
 
@@ -802,6 +808,7 @@ public class PatternView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         if (!mInputEnabled || !isEnabled()) {
             return false;
         }
@@ -1161,7 +1168,8 @@ public class PatternView extends View {
          * Constructor called from {@link PatternView#onSaveInstanceState()}
          */
         private SavedState(Parcelable superState, String serializedPattern, int displayMode,
-                           boolean inputEnabled, boolean inStealthMode, boolean tactileFeedbackEnabled) {
+                           boolean inputEnabled, boolean inStealthMode,
+                           boolean tactileFeedbackEnabled) {
             super(superState);
             mSerializedPattern = serializedPattern;
             mDisplayMode = displayMode;
