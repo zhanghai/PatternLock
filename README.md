@@ -4,11 +4,7 @@ An Android library for pattern lock.
 
 ![Sample](./image/sample_small.png)
 
-[Sample Application](./dist/sample.apk)
-
-[Library AAR](./dist/library.aar)
-
-[![JitPack Maven](https://img.shields.io/github/release/DreaminginCodeZH/PatternLock.svg?label=JitPack%20Maven)](https://jitpack.io/#DreaminginCodeZH/PatternLock)
+[Sample Application](//github.com/DreaminginCodeZH/PatternLock/releases/download/v2.0.0/sample-release.apk)
 
 ## PatternLock or LockPattern?
 
@@ -19,6 +15,14 @@ The original view in AOSP is named `LockPatternView`, however I believe it is na
 This library aims to provide the basic but extensible building blocks for implementing pattern lock mechanism in an Android app. So the common usage will be extending the base Activity classes provided and overriding methods according to your need.
 
 This library also aims to be elegant. Code taken from AOSP was slightly refactored and renamed to be clear, and the `PatternView` now utilizes the Android resource system for customization.
+
+## Integration
+
+Gradle:
+
+```gradle
+compile 'me.zhanghai.android.patternlock:library:2.0.0'
+```
 
 ## Usage
 
@@ -138,6 +142,10 @@ I know there is already a library named [android-lockpattern](https://code.googl
 * That project provides a bunch of mechanisms and extras for its `Activity` (and with some private methods :( ), none of which I found suitable for my use case, while this project provides a bunch of methods to override to meet your need.
 
 * That project has a demo but it is close-sourced, while this project provides an open source sample application with a working pattern lock mechanism implementation.
+
+## Legacy version
+
+There was a legacy version of this library with Android Design appearance and native Activity. If you still want that version, checkout [this](//github.com/DreaminginCodeZH/PatternLock/tree/0d82d0a1b5a01b7dcf206363012c339969c7a63d).
 
 ## License
 
