@@ -12,17 +12,12 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 
-public class ViewAccessibilityCompat {
+class ViewAccessibilityCompat {
 
     private ViewAccessibilityCompat() {}
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void announceForAccessibility(View view, CharSequence announcement) {
-
-        if (view == null) {
-            return;
-        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.announceForAccessibility(announcement);
         } else {

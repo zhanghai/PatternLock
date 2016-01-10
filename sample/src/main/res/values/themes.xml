@@ -32,12 +32,12 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowDisablePreview">true</item>
         <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
-        <item name="patternViewStyle">@style/PatternView.Holo.Light</item>
+        <item name="patternViewStyle">@style/PatternView.Light</item>
     </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
         <item name="android:windowDisablePreview">true</item>
         <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
-        <item name="patternViewStyle">@style/PatternView.Holo</item>
+        <item name="patternViewStyle">@style/PatternView.Dark</item>
     </style>
 </resources>

@@ -13,6 +13,7 @@ package me.zhanghai.android.patternlock;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -30,6 +31,8 @@ import android.provider.Settings;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v4.widget.ExploreByTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -38,7 +41,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
-import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,6 +149,7 @@ public class PatternView extends View {
     private final Interpolator mFastOutSlowInInterpolator;
     private final Interpolator mLinearOutSlowInInterpolator;
     private PatternExploreByTouchHelper mExploreByTouchHelper;
+    private AccessibilityManager mAccessibilityManager;
     private AudioManager mAudioManager;
 
     /**
@@ -291,13 +294,13 @@ public class PatternView extends View {
 
         setClickable(true);
 
-
         mPathPaint.setAntiAlias(true);
         mPathPaint.setDither(true);
 
-        mRegularColor = context.getColor(R.color.lock_pattern_view_regular_color);
-        mErrorColor = context.getColor(R.color.lock_pattern_view_error_color);
-        mSuccessColor = context.getColor(R.color.lock_pattern_view_success_color);
+        // Removed since every developer should set their own patternViewStyle.
+        //mRegularColor = context.getColor(R.color.lock_pattern_view_regular_color);
+        //mErrorColor = context.getColor(R.color.lock_pattern_view_error_color);
+        //mSuccessColor = context.getColor(R.color.lock_pattern_view_success_color);
         mRegularColor = a.getColor(R.styleable.PatternView_regularColor, mRegularColor);
         mErrorColor = a.getColor(R.styleable.PatternView_errorColor, mErrorColor);
         mSuccessColor = a.getColor(R.styleable.PatternView_successColor, mSuccessColor);
@@ -305,16 +308,18 @@ public class PatternView extends View {
         int pathColor = a.getColor(R.styleable.PatternView_pathColor, mRegularColor);
         mPathPaint.setColor(pathColor);
 
+        a.recycle();
+
         mPathPaint.setStyle(Paint.Style.STROKE);
         mPathPaint.setStrokeJoin(Paint.Join.ROUND);
         mPathPaint.setStrokeCap(Paint.Cap.ROUND);
 
-        mPathWidth = getResources().getDimensionPixelSize(R.dimen.lock_pattern_dot_line_width);
+        mPathWidth = getResources().getDimensionPixelSize(R.dimen.pl_pattern_dot_line_width);
         mPathPaint.setStrokeWidth(mPathWidth);
 
-        mDotSize = getResources().getDimensionPixelSize(R.dimen.lock_pattern_dot_size);
+        mDotSize = getResources().getDimensionPixelSize(R.dimen.pl_pattern_dot_size);
         mDotSizeActivated = getResources().getDimensionPixelSize(
-                R.dimen.lock_pattern_dot_size_activated);
+                R.dimen.pl_pattern_dot_size_activated);
 
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
@@ -329,12 +334,12 @@ public class PatternView extends View {
             }
         }
 
-        mFastOutSlowInInterpolator =
-                AnimationUtils.loadInterpolator(context, android.R.interpolator.fast_out_slow_in);
-        mLinearOutSlowInInterpolator =
-                AnimationUtils.loadInterpolator(context, android.R.interpolator.linear_out_slow_in);
+        mFastOutSlowInInterpolator = new FastOutSlowInInterpolator();
+        mLinearOutSlowInInterpolator = new LinearOutSlowInInterpolator();
         mExploreByTouchHelper = new PatternExploreByTouchHelper(this);
         ViewCompat.setAccessibilityDelegate(this, mExploreByTouchHelper);
+        mAccessibilityManager = (AccessibilityManager) getContext().getSystemService(
+                Context.ACCESSIBILITY_SERVICE);
         mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
     }
 
@@ -785,8 +790,7 @@ public class PatternView extends View {
 
     @Override
     public boolean onHoverEvent(MotionEvent event) {
-        if (((AccessibilityManager) getContext().getSystemService(Context.ACCESSIBILITY_SERVICE))
-                .isTouchExplorationEnabled()) {
+        if (mAccessibilityManager.isTouchExplorationEnabled()) {
             final int action = event.getAction();
             switch (action) {
                 case MotionEvent.ACTION_HOVER_ENTER:
@@ -910,7 +914,7 @@ public class PatternView extends View {
     }
 
     private void sendAccessEvent(int resId) {
-        announceForAccessibility(getContext().getString(resId));
+        ViewAccessibilityCompat.announceForAccessibility(this, getContext().getString(resId));
     }
 
     private void handleActionUp() {
@@ -1390,6 +1394,9 @@ public class PatternView extends View {
             //        getContext().getContentResolver(),
             //        Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD, 0,
             //        UserHandle.USER_CURRENT_OR_SELF) != 0;
+            // Settings.Secure.getInt() will return the supplied default value 0 if not found, so it
+            // is OK to use the Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD from future.
+            @SuppressLint("InlinedApi")
             final boolean speakPassword = Settings.Secure.getInt(getContext().getContentResolver(),
                     Settings.Secure.ACCESSIBILITY_SPEAK_PASSWORD, 0) != 0;
             @SuppressWarnings("deprecation")
