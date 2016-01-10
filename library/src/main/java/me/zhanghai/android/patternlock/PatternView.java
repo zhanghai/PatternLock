@@ -36,7 +36,6 @@ import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v4.widget.ExploreByTouchHelper;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
@@ -129,7 +128,6 @@ public class PatternView extends View {
     private DisplayMode mPatternDisplayMode = DisplayMode.Correct;
     private boolean mInputEnabled = true;
     private boolean mInStealthMode = false;
-    private boolean mEnableHapticFeedback = true;
     private boolean mPatternInProgress = false;
 
     private float mHitFactor = 0.6f;
@@ -355,13 +353,6 @@ public class PatternView extends View {
     }
 
     /**
-     * @return Whether the view has tactile feedback enabled.
-     */
-    public boolean isTactileFeedbackEnabled() {
-        return mEnableHapticFeedback;
-    }
-
-    /**
      * Set whether the view is in stealth mode.  If true, there will be no
      * visible feedback as the user enters the pattern.
      *
@@ -369,16 +360,6 @@ public class PatternView extends View {
      */
     public void setInStealthMode(boolean inStealthMode) {
         mInStealthMode = inStealthMode;
-    }
-
-    /**
-     * Set whether the view will use tactile feedback.  If true, there will be
-     * tactile feedback as the user enters the pattern.
-     *
-     * @param tactileFeedbackEnabled Whether tactile feedback is enabled
-     */
-    public void setTactileFeedbackEnabled(boolean tactileFeedbackEnabled) {
-        mEnableHapticFeedback = tactileFeedbackEnabled;
     }
 
     /**
@@ -640,11 +621,6 @@ public class PatternView extends View {
                 addCellToPattern(fillInGapCell);
             }
             addCellToPattern(cell);
-            if (mEnableHapticFeedback) {
-                performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY,
-                        HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING
-                                | HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
-            }
             return cell;
         }
         return null;
@@ -1136,7 +1112,7 @@ public class PatternView extends View {
         return new SavedState(superState,
                 PatternUtils.patternToString(mPattern),
                 mPatternDisplayMode.ordinal(),
-                mInputEnabled, mInStealthMode, mEnableHapticFeedback);
+                mInputEnabled, mInStealthMode);
     }
 
     @Override
@@ -1147,7 +1123,6 @@ public class PatternView extends View {
         mPatternDisplayMode = DisplayMode.values()[ss.getDisplayMode()];
         mInputEnabled = ss.isInputEnabled();
         mInStealthMode = ss.isInStealthMode();
-        mEnableHapticFeedback = ss.isTactileFeedbackEnabled();
     }
 
     /**
@@ -1159,20 +1134,17 @@ public class PatternView extends View {
         private final int mDisplayMode;
         private final boolean mInputEnabled;
         private final boolean mInStealthMode;
-        private final boolean mTactileFeedbackEnabled;
 
         /**
          * Constructor called from {@link PatternView#onSaveInstanceState()}
          */
         private SavedState(Parcelable superState, String serializedPattern, int displayMode,
-                           boolean inputEnabled, boolean inStealthMode,
-                           boolean tactileFeedbackEnabled) {
+                           boolean inputEnabled, boolean inStealthMode) {
             super(superState);
             mSerializedPattern = serializedPattern;
             mDisplayMode = displayMode;
             mInputEnabled = inputEnabled;
             mInStealthMode = inStealthMode;
-            mTactileFeedbackEnabled = tactileFeedbackEnabled;
         }
 
         /**
@@ -1184,7 +1156,6 @@ public class PatternView extends View {
             mDisplayMode = in.readInt();
             mInputEnabled = (Boolean) in.readValue(null);
             mInStealthMode = (Boolean) in.readValue(null);
-            mTactileFeedbackEnabled = (Boolean) in.readValue(null);
         }
 
         public String getSerializedPattern() {
@@ -1203,10 +1174,6 @@ public class PatternView extends View {
             return mInStealthMode;
         }
 
-        public boolean isTactileFeedbackEnabled(){
-            return mTactileFeedbackEnabled;
-        }
-
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             super.writeToParcel(dest, flags);
@@ -1214,7 +1181,6 @@ public class PatternView extends View {
             dest.writeInt(mDisplayMode);
             dest.writeValue(mInputEnabled);
             dest.writeValue(mInStealthMode);
-            dest.writeValue(mTactileFeedbackEnabled);
         }
 
         @SuppressWarnings({ "unused", "hiding" }) // Found using reflection
