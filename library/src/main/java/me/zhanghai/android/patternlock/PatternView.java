@@ -392,6 +392,13 @@ public class PatternView extends View {
     }
 
     /**
+     * Get the display mode of the current pattern.
+     */
+    public DisplayMode getDisplayMode() {
+        return mPatternDisplayMode;
+    }
+
+    /**
      * Set the display mode of the current pattern.  This can be useful, for
      * instance, after detecting a pattern to tell this view whether change the
      * in progress result to correct or wrong.
