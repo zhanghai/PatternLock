@@ -1034,7 +1034,11 @@ public class PatternView extends View {
         final boolean drawPath = !mInStealthMode;
 
         if (drawPath) {
+
             mPathPaint.setColor(getCurrentColor(true /* partOfPattern */));
+            // Anyway other drawing sets their own alpha ignoring the original; And in this way we
+            // can use ?colorControlNormal better.
+            mPathPaint.setAlpha(255);
 
             boolean anyCircles = false;
             float lastX = 0f;

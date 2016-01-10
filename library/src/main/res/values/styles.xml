@@ -12,14 +12,14 @@
     </style>
 
     <style name="PatternView" parent="Base.PatternView">
-        <item name="regularColor">@android:color/white</item>
+        <item name="regularColor">?colorControlNormal</item>
         <item name="errorColor">#fff4511e</item>
-        <item name="successColor">#ff80cbc4</item>
+        <item name="successColor">?colorControlActivated</item>
     </style>
 
     <style name="PatternView.Light" parent="Base.PatternView">
-        <item name="regularColor">#ff212121</item>
+        <item name="regularColor">?colorControlNormal</item>
         <item name="errorColor">#fff4511e</item>
-        <item name="successColor">#ff009688</item>
+        <item name="successColor">?colorControlActivated</item>
     </style>
 </resources>
