@@ -14,10 +14,9 @@
         android:persistent="false"
         android:title="@string/pref_title_set_pattern" />
 
-    <CheckBoxPreference
+    <SwitchPreferenceCompat
         android:key="pref_key_pattern_visible"
         android:defaultValue="true"
-        android:dependency="pref_key_set_pattern"
         android:summaryOff="@string/pref_summary_pattern_visible_off"
         android:summaryOn="@string/pref_summary_pattern_visible_on"
         android:title="@string/pref_title_pattern_visible" />

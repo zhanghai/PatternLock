@@ -6,14 +6,36 @@
 package me.zhanghai.android.patternlock.sample.preference;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.preference.DialogPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 import android.util.AttributeSet;
 
-import me.zhanghai.android.patternlock.sample.R;
-import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
-import me.zhanghai.android.patternlock.sample.util.ToastUtils;
-
 public class ClearPatternPreference extends DialogPreference {
+
+    // As in PreferenceFragmentCompat, because we want to ensure that at most one dialog is showing.
+    private static final String DIALOG_FRAGMENT_TAG =
+            "android.support.v7.preference.PreferenceFragment.DIALOG";
+
+    public static boolean onDisplayPreferenceDialog(PreferenceFragmentCompat preferenceFragment,
+                                                    Preference preference) {
+
+        if (preference instanceof ClearPatternPreference) {
+            // getChildFragmentManager() will lead to looking for target fragment in the child
+            // fragment manager.
+            FragmentManager fragmentManager = preferenceFragment.getFragmentManager();
+            if(fragmentManager.findFragmentByTag(DIALOG_FRAGMENT_TAG) == null) {
+                ClearPatternPreferenceDialogFragment dialogFragment =
+                        ClearPatternPreferenceDialogFragment.newInstance();
+                dialogFragment.setTargetFragment(preferenceFragment, 0);
+                dialogFragment.show(fragmentManager, DIALOG_FRAGMENT_TAG);
+            }
+            return true;
+        }
+
+        return false;
+    }
 
     public ClearPatternPreference(Context context, AttributeSet attrs, int defStyleAttr,
                                   int defStyleRes) {
@@ -30,14 +52,5 @@ public class ClearPatternPreference extends DialogPreference {
 
     public ClearPatternPreference(Context context) {
         super(context);
-    }
-
-    @Override
-    protected void onDialogClosed(boolean positiveResult) {
-        if (positiveResult) {
-            Context context = getContext();
-            PatternLockUtils.clearPattern(context);
-            ToastUtils.show(R.string.pattern_cleared, context);
-        }
     }
 }

@@ -13,11 +13,15 @@ import java.util.List;
 import me.zhanghai.android.patternlock.PatternView;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
+import me.zhanghai.android.patternlock.sample.util.ThemeUtils;
 
 public class SetPatternActivity extends me.zhanghai.android.patternlock.SetPatternActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        ThemeUtils.applyTheme(this);
+
         super.onCreate(savedInstanceState);
 
         AppUtils.setActionBarDisplayUp(this);

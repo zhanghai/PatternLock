@@ -7,7 +7,7 @@
 
 <resources>
 
-    <color name="preference_fallback_accent_color">@color/color_accent_dark</color>
+    <color name="preference_fallback_accent_color">@color/accent_material_light</color>
 
     <style name="Base.ThemeOverlay.Preference" parent="">
 
@@ -29,21 +29,15 @@
 
     <style name="ThemeOverlay.Preference" parent="Base.ThemeOverlay.Preference" />
 
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowDisablePreview">true</item>
-        <item name="colorPrimary">@color/color_primary_dark</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark_dark</item>
-        <item name="colorAccent">@color/color_accent_dark</item>
-        <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
-        <item name="patternViewStyle">@style/PatternView.Holo</item>
-    </style>
-
-    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
-        <item name="android:windowDisablePreview">true</item>
-        <item name="colorPrimary">@color/color_primary_light</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark_light</item>
-        <item name="colorAccent">@color/color_accent_light</item>
         <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
         <item name="patternViewStyle">@style/PatternView.Holo.Light</item>
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
+        <item name="patternViewStyle">@style/PatternView.Holo</item>
     </style>
 </resources>

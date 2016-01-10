@@ -6,7 +6,6 @@
 package me.zhanghai.android.patternlock.sample.app;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,7 +15,7 @@ import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 import me.zhanghai.android.patternlock.sample.util.ToastUtils;
 
-public class ResetPatternActivity extends AppCompatActivity {
+public class ResetPatternActivity extends ThemedAppCompatActivity {
 
     @Bind(R.id.ok_button)
     Button mOkButton;

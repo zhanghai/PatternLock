@@ -15,7 +15,7 @@
             android:targetClass="me.zhanghai.android.patternlock.sample.app.PatternLockActivity" />
     </Preference>
 
-    <me.zhanghai.android.patternlock.sample.preference.ListPreferenceCompat
+    <ListPreference
         android:key="pref_key_theme"
         android:defaultValue="0"
         android:dialogTitle="@string/pref_dialog_title_theme"

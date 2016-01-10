@@ -6,7 +6,6 @@
 package me.zhanghai.android.patternlock.sample.app;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import butterknife.ButterKnife;
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends ThemedAppCompatActivity {
 
     @Bind(R.id.version_text)
     TextView mVersionText;

@@ -6,6 +6,7 @@
 package me.zhanghai.android.patternlock.sample.app;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import java.util.List;
 
@@ -13,8 +14,17 @@ import me.zhanghai.android.patternlock.PatternView;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 import me.zhanghai.android.patternlock.sample.util.PreferenceContract;
 import me.zhanghai.android.patternlock.sample.util.PreferenceUtils;
+import me.zhanghai.android.patternlock.sample.util.ThemeUtils;
 
 public class ConfirmPatternActivity extends me.zhanghai.android.patternlock.ConfirmPatternActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        ThemeUtils.applyTheme(this);
+
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected boolean isStealthModeEnabled() {

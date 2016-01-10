@@ -7,14 +7,13 @@ package me.zhanghai.android.patternlock.sample.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 
-public class PatternLockActivity extends AppCompatActivity {
+public class PatternLockActivity extends ThemedAppCompatActivity {
 
     private static final String KEY_CONFIRM_STARTED = "confirm_started";
 

@@ -16,7 +16,7 @@ public class ThemeUtils {
 
     private static final int[] THEME_IDS = new int[] {
             R.style.AppTheme,
-            R.style.AppTheme_Light
+            R.style.AppTheme_Dark
     };
 
     public static int getThemeId(Context context) {
@@ -26,7 +26,6 @@ public class ThemeUtils {
     }
 
     public static void applyTheme(Activity activity) {
-        int themeId = getThemeId(activity);
-        activity.setTheme(themeId);
+        activity.setTheme(getThemeId(activity));
     }
 }
