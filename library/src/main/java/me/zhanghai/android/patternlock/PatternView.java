@@ -99,7 +99,7 @@ public class PatternView extends View {
      * This can be used to avoid updating the display for very small motions or noisy panels.
      * It didn't seem to have much impact on the devices tested, so currently set to 0.
      */
-    private static final float DRAG_THRESHHOLD = 0.0f;
+    private static final float DRAG_THRESHOLD = 0.0f;
     public static final int VIRTUAL_BASE_VIEW_ID = 1;
     public static final boolean DEBUG_A11Y = false;
     private static final String TAG = "LockPatternView";
@@ -839,7 +839,7 @@ public class PatternView extends View {
             // note current x and y for rubber banding of in progress patterns
             final float dx = Math.abs(x - mInProgressX);
             final float dy = Math.abs(y - mInProgressY);
-            if (dx > DRAG_THRESHHOLD || dy > DRAG_THRESHHOLD) {
+            if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) {
                 invalidateNow = true;
             }
 
