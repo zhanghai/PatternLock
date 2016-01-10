@@ -27,7 +27,7 @@ public class ClearPatternPreference extends DialogPreference {
             FragmentManager fragmentManager = preferenceFragment.getFragmentManager();
             if(fragmentManager.findFragmentByTag(DIALOG_FRAGMENT_TAG) == null) {
                 ClearPatternPreferenceDialogFragment dialogFragment =
-                        ClearPatternPreferenceDialogFragment.newInstance();
+                        ClearPatternPreferenceDialogFragment.newInstance(preference.getKey());
                 dialogFragment.setTargetFragment(preferenceFragment, 0);
                 dialogFragment.show(fragmentManager, DIALOG_FRAGMENT_TAG);
             }

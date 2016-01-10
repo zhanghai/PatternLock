@@ -21,7 +21,9 @@
         android:summaryOn="@string/pref_summary_pattern_visible_on"
         android:title="@string/pref_title_pattern_visible" />
 
+    <!-- support-v7 PreferenceDialogFragmentCompat needs a key to find its Preference. -->
     <me.zhanghai.android.patternlock.sample.preference.ClearPatternPreference
+        android:key="pref_key_clear_pattern"
         android:title="@string/pref_title_clear_pattern"
         android:dependency="pref_key_set_pattern"
         android:dialogMessage="@string/pref_dialog_message_clear_pattern" />
