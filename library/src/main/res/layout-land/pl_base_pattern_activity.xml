@@ -8,43 +8,31 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:divider="?android:attr/dividerVertical"
-    android:orientation="horizontal"
-    android:showDividers="middle">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:divider="?android:attr/dividerHorizontal"
-        android:dividerPadding="12dp"
+        android:divider="?dividerHorizontal"
         android:orientation="vertical"
         android:showDividers="middle">
 
-        <!-- This FrameLayout is for proper divider drawing. -->
-        <FrameLayout
+        <TextView
+            android:id="@+id/pl_message_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/pl_message_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?android:attr/listPreferredItemHeight"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </FrameLayout>
+            android:layout_weight="1"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:gravity="center_horizontal|top"
+            android:textAppearance="?android:textAppearanceMedium" />
 
         <LinearLayout
             android:id="@+id/pl_button_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:divider="?android:attr/dividerVertical"
-            android:dividerPadding="12dp"
-            android:showDividers="middle">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/pl_left_button"
