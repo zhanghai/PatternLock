@@ -145,7 +145,7 @@ I know there is already a library named [android-lockpattern](https://code.googl
 
 ## Legacy version
 
-There was a legacy version of this library with Android Design appearance and native Activity. If you still want that version, checkout [this](//github.com/DreaminginCodeZH/PatternLock/tree/0d82d0a1b5a01b7dcf206363012c339969c7a63d).
+There was a legacy version of this library with Android Design (Holo) appearance and native Activity. If you still want that version, checkout [this](//github.com/DreaminginCodeZH/PatternLock/tree/0d82d0a1b5a01b7dcf206363012c339969c7a63d).
 
 ## License
 
