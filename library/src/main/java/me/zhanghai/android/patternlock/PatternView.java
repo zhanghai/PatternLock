@@ -274,9 +274,14 @@ public class PatternView extends View {
     }
 
     public PatternView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, R.attr.patternViewStyle);
+    }
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PatternView);
+    public PatternView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PatternView, defStyleAttr,
+                0);
 
         final String aspect = a.getString(R.styleable.PatternView_aspect);
 

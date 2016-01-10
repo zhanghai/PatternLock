@@ -9,9 +9,6 @@
 
     <style name="PatternView">
         <item name="aspect">square</item>
-    </style>
-
-    <style name="PatternView.Dark">
         <item name="regularColor">@android:color/white</item>
         <item name="errorColor">#fff4511e</item>
         <item name="successColor">@android:color/white</item>

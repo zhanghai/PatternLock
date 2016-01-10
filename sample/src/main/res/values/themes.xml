@@ -38,6 +38,6 @@
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
         <item name="android:windowDisablePreview">true</item>
         <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
-        <item name="patternViewStyle">@style/PatternView.Dark</item>
+        <item name="patternViewStyle">@style/PatternView</item>
     </style>
 </resources>
