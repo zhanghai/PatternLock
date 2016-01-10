@@ -15,12 +15,10 @@
         <item name="regularColor">@android:color/white</item>
         <item name="errorColor">#fff4511e</item>
         <item name="successColor">@android:color/white</item>
-        <item name="pathColor">@android:color/white</item>
     </style>
 
     <style name="PatternView.Light">
         <item name="regularColor">@android:color/holo_blue_dark</item>
         <item name="successColor">@android:color/holo_blue_dark</item>
-        <item name="pathColor">@android:color/holo_blue_dark</item>
     </style>
 </resources>
