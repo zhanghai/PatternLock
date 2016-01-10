@@ -10,13 +10,28 @@ import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import me.zhanghai.android.patternlock.PatternView;
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
 
 public class AboutActivity extends ThemedAppCompatActivity {
 
+    private static final List<PatternView.Cell> LOGO_PATTERN = new ArrayList<>();
+    static {
+        LOGO_PATTERN.add(PatternView.Cell.of(0, 1));
+        LOGO_PATTERN.add(PatternView.Cell.of(1, 0));
+        LOGO_PATTERN.add(PatternView.Cell.of(2, 1));
+        LOGO_PATTERN.add(PatternView.Cell.of(1, 2));
+        LOGO_PATTERN.add(PatternView.Cell.of(1, 1));
+    }
+
+    @Bind(R.id.pattern_view)
+    PatternView mPatternView;
     @Bind(R.id.version_text)
     TextView mVersionText;
     @Bind(R.id.github_text)
@@ -31,6 +46,7 @@ public class AboutActivity extends ThemedAppCompatActivity {
         setContentView(R.layout.about_activity);
         ButterKnife.bind(this);
 
+        mPatternView.setPattern(PatternView.DisplayMode.Animate, LOGO_PATTERN);
         String version = getString(R.string.about_version,
                 AppUtils.getPackageInfo(this).versionName);
         mVersionText.setText(version);
