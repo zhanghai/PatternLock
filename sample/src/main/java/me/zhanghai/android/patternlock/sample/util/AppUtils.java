@@ -5,7 +5,6 @@
 
 package me.zhanghai.android.patternlock.sample.util;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -59,13 +58,7 @@ public class AppUtils {
         navigateUp(activity, null);
     }
 
-    public static void setupActionBar(Activity activity) {
-        ActionBar actionBar = activity.getActionBar();
-        actionBar.setDisplayUseLogoEnabled(true);
-    }
-
-    public static void setupActionBarDisplayUp(Activity activity) {
-        setupActionBar(activity);
+    public static void setActionBarDisplayUp(Activity activity) {
         activity.getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

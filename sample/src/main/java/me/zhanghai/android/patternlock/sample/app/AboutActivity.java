@@ -5,30 +5,37 @@
 
 package me.zhanghai.android.patternlock.sample.app;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
 
-public class AboutActivity extends Activity {
+public class AboutActivity extends AppCompatActivity {
+
+    @Bind(R.id.version_text)
+    TextView mVersionText;
+    @Bind(R.id.github_text)
+    TextView mGitHubText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AppUtils.setupActionBarDisplayUp(this);
+        AppUtils.setActionBarDisplayUp(this);
 
         setContentView(R.layout.about_activity);
+        ButterKnife.bind(this);
 
         String version = getString(R.string.about_version,
                 AppUtils.getPackageInfo(this).versionName);
-        ((TextView) findViewById(R.id.about_version_text)).setText(version);
-        ((TextView) findViewById(R.id.about_github_text))
-                .setMovementMethod(LinkMovementMethod.getInstance());
+        mVersionText.setText(version);
+        mGitHubText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override

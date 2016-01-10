@@ -19,7 +19,7 @@ import me.zhanghai.android.patternlock.sample.app.SetPatternActivity;
 
 public class PatternLockUtils {
 
-    public static final int REQUEST_CODE_CONFIRM_PATTERN = 19951208;
+    public static final int REQUEST_CODE_CONFIRM_PATTERN = 19961214;
 
     public static void setPattern(List<PatternView.Cell> pattern, Context context) {
         PreferenceUtils.putString(PreferenceContract.KEY_PATTERN_SHA1,
@@ -59,7 +59,7 @@ public class PatternLockUtils {
 
     public static void confirmPatternIfHas(Activity activity) {
         if (hasPattern(activity)) {
-            confirmPattern(activity, REQUEST_CODE_CONFIRM_PATTERN);
+            confirmPattern(activity);
         }
     }
 

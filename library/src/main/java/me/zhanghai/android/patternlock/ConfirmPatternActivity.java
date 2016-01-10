@@ -27,24 +27,24 @@ public class ConfirmPatternActivity extends BasePatternActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        messageText.setText(R.string.pl_draw_pattern_to_unlock);
-        patternView.setInStealthMode(isStealthModeEnabled());
-        patternView.setOnPatternListener(this);
-        leftButton.setText(R.string.pl_cancel);
-        leftButton.setOnClickListener(new View.OnClickListener() {
+        mMessageText.setText(R.string.pl_draw_pattern_to_unlock);
+        mPatternView.setInStealthMode(isStealthModeEnabled());
+        mPatternView.setOnPatternListener(this);
+        mLeftButton.setText(R.string.pl_cancel);
+        mLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onCancel();
             }
         });
-        rightButton.setText(R.string.pl_forgot_pattern);
-        rightButton.setOnClickListener(new View.OnClickListener() {
+        mRightButton.setText(R.string.pl_forgot_pattern);
+        mRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onForgotPassword();
             }
         });
-        ViewAccessibilityCompat.announceForAccessibility(messageText, messageText.getText());
+        ViewAccessibilityCompat.announceForAccessibility(mMessageText, mMessageText.getText());
 
         if (savedInstanceState == null) {
             numFailedAttempts = 0;
@@ -66,7 +66,7 @@ public class ConfirmPatternActivity extends BasePatternActivity
         removeClearPatternRunnable();
 
         // Set display mode to correct to ensure that pattern can be in stealth mode.
-        patternView.setDisplayMode(PatternView.DisplayMode.Correct);
+        mPatternView.setDisplayMode(PatternView.DisplayMode.Correct);
     }
 
     @Override
@@ -77,10 +77,10 @@ public class ConfirmPatternActivity extends BasePatternActivity
         if (isPatternCorrect(pattern)) {
             onConfirmed();
         } else {
-            messageText.setText(R.string.pl_wrong_pattern);
-            patternView.setDisplayMode(PatternView.DisplayMode.Wrong);
+            mMessageText.setText(R.string.pl_wrong_pattern);
+            mPatternView.setDisplayMode(PatternView.DisplayMode.Wrong);
             postClearPatternRunnable();
-            ViewAccessibilityCompat.announceForAccessibility(messageText, messageText.getText());
+            ViewAccessibilityCompat.announceForAccessibility(mMessageText, mMessageText.getText());
             onWrongPattern();
         }
     }

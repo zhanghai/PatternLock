@@ -5,26 +5,32 @@
 
 package me.zhanghai.android.patternlock.sample.app;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import me.zhanghai.android.patternlock.sample.R;
-import me.zhanghai.android.patternlock.sample.util.AppUtils;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 import me.zhanghai.android.patternlock.sample.util.ToastUtils;
 
-public class ResetPatternActivity extends Activity {
+public class ResetPatternActivity extends AppCompatActivity {
+
+    @Bind(R.id.ok_button)
+    Button mOkButton;
+    @Bind(R.id.cancel_button)
+    Button mCancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AppUtils.setupActionBar(this);
-
         setContentView(R.layout.reset_pattern_activity);
+        ButterKnife.bind(this);
 
-        findViewById(R.id.reset_pattern_ok_button).setOnClickListener(new View.OnClickListener() {
+        mOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PatternLockUtils.clearPattern(ResetPatternActivity.this);
@@ -33,7 +39,7 @@ public class ResetPatternActivity extends Activity {
             }
         });
 
-        findViewById(R.id.reset_pattern_cancel_button).setOnClickListener(new View.OnClickListener() {
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

@@ -92,14 +92,14 @@ public class SetPatternActivity extends BasePatternActivity
 
         minPatternSize = getMinPatternSize();
 
-        patternView.setOnPatternListener(this);
-        leftButton.setOnClickListener(new View.OnClickListener() {
+        mPatternView.setOnPatternListener(this);
+        mLeftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onLeftButtonClicked();
             }
         });
-        rightButton.setOnClickListener(new View.OnClickListener() {
+        mRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onRightButtonClicked();
@@ -132,10 +132,10 @@ public class SetPatternActivity extends BasePatternActivity
 
         removeClearPatternRunnable();
 
-        messageText.setText(R.string.pl_recording_pattern);
-        patternView.setDisplayMode(PatternView.DisplayMode.Correct);
-        leftButton.setEnabled(false);
-        rightButton.setEnabled(false);
+        mMessageText.setText(R.string.pl_recording_pattern);
+        mPatternView.setDisplayMode(PatternView.DisplayMode.Correct);
+        mLeftButton.setEnabled(false);
+        mRightButton.setEnabled(false);
     }
 
     @Override
@@ -209,35 +209,35 @@ public class SetPatternActivity extends BasePatternActivity
         stage = newStage;
 
         if (stage == Stage.DrawTooShort) {
-            messageText.setText(getString(stage.messageId, minPatternSize));
+            mMessageText.setText(getString(stage.messageId, minPatternSize));
         } else {
-            messageText.setText(stage.messageId);
+            mMessageText.setText(stage.messageId);
         }
 
-        leftButton.setText(stage.leftButtonState.textId);
-        leftButton.setEnabled(stage.leftButtonState.enabled);
+        mLeftButton.setText(stage.leftButtonState.textId);
+        mLeftButton.setEnabled(stage.leftButtonState.enabled);
 
-        rightButton.setText(stage.rightButtonState.textId);
-        rightButton.setEnabled(stage.rightButtonState.enabled);
+        mRightButton.setText(stage.rightButtonState.textId);
+        mRightButton.setEnabled(stage.rightButtonState.enabled);
 
-        patternView.setInputEnabled(stage.patternEnabled);
+        mPatternView.setInputEnabled(stage.patternEnabled);
 
         switch (stage) {
             case Draw:
                 // clearPattern() resets display mode to DisplayMode.Correct.
-                patternView.clearPattern();
+                mPatternView.clearPattern();
                 break;
             case DrawTooShort:
-                patternView.setDisplayMode(PatternView.DisplayMode.Wrong);
+                mPatternView.setDisplayMode(PatternView.DisplayMode.Wrong);
                 postClearPatternRunnable();
                 break;
             case DrawValid:
                 break;
             case Confirm:
-                patternView.clearPattern();
+                mPatternView.clearPattern();
                 break;
             case ConfirmWrong:
-                patternView.setDisplayMode(PatternView.DisplayMode.Wrong);
+                mPatternView.setDisplayMode(PatternView.DisplayMode.Wrong);
                 postClearPatternRunnable();
                 break;
             case ConfirmCorrect:
@@ -247,7 +247,7 @@ public class SetPatternActivity extends BasePatternActivity
         // If the stage changed, announce the header for accessibility. This
         // is a no-op when accessibility is disabled.
         if (previousStage != stage) {
-            ViewAccessibilityCompat.announceForAccessibility(messageText, messageText.getText());
+            ViewAccessibilityCompat.announceForAccessibility(mMessageText, mMessageText.getText());
         }
     }
 

@@ -5,19 +5,16 @@
 
 package me.zhanghai.android.patternlock.sample.app;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import me.zhanghai.android.patternlock.sample.R;
-import me.zhanghai.android.patternlock.sample.util.AppUtils;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        AppUtils.setupActionBar(this);
 
         setContentView(R.layout.main_activity);
     }

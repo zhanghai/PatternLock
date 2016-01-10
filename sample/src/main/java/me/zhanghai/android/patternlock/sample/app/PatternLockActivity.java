@@ -5,35 +5,35 @@
 
 package me.zhanghai.android.patternlock.sample.app;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 
-public class PatternLockActivity extends Activity {
+public class PatternLockActivity extends AppCompatActivity {
 
-    private static final String KEY_CONFIRM_STARTED = "confirmStarted";
+    private static final String KEY_CONFIRM_STARTED = "confirm_started";
 
-    private boolean confirmStarted = false;
+    private boolean mConfirmStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AppUtils.setupActionBarDisplayUp(this);
+        AppUtils.setActionBarDisplayUp(this);
 
         setContentView(R.layout.pattern_lock_activity);
 
         if (savedInstanceState != null) {
-            confirmStarted = savedInstanceState.getBoolean(KEY_CONFIRM_STARTED);
+            mConfirmStarted = savedInstanceState.getBoolean(KEY_CONFIRM_STARTED);
         }
-        if (!confirmStarted) {
+        if (!mConfirmStarted) {
             PatternLockUtils.confirmPatternIfHas(this);
-            confirmStarted = true;
+            mConfirmStarted = true;
         }
     }
 
@@ -41,7 +41,7 @@ public class PatternLockActivity extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putBoolean(KEY_CONFIRM_STARTED, confirmStarted);
+        outState.putBoolean(KEY_CONFIRM_STARTED, mConfirmStarted);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class PatternLockActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (PatternLockUtils.checkConfirmPatternResult(this, requestCode, resultCode)) {
-            confirmStarted = false;
+            mConfirmStarted = false;
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }

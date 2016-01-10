@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2016 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+    <color name="color_primary_light">@color/primary_material_light</color>
+    <color name="color_primary_dark_light">@color/primary_dark_material_light</color>
+    <color name="color_accent_light">@color/accent_material_light</color>
+    <color name="color_primary_dark">@color/primary_material_dark</color>
+    <color name="color_primary_dark_dark">@color/primary_dark_material_dark</color>
+    <color name="color_accent_dark">@color/accent_material_dark</color>
+</resources>
