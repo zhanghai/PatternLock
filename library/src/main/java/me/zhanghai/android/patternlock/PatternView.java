@@ -374,7 +374,7 @@ public class PatternView extends View {
     }
 
     /**
-     * Set the pattern explicitely (rather than waiting for the user to input
+     * Set the pattern explicitly (rather than waiting for the user to input
      * a pattern).
      * @param displayMode How to display the pattern.
      * @param pattern The pattern.
