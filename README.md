@@ -2,7 +2,7 @@
 
 An Android library for pattern lock.
 
-![Sample](./image/sample_small.png)
+![Sample](./screenshot/sample_small.png)
 
 [Sample Application](//github.com/DreaminginCodeZH/PatternLock/releases/download/v2.0.0/sample-release.apk)
 
