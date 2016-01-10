@@ -33,12 +33,12 @@
 
     <string name="set_pattern_title">设置解锁图案</string>
     <string name="confirm_pattern_title">确认解锁图案</string>
-    <string name="reset_pattern_title">确认密码以重设图案</string>
+    <string name="reset_pattern_title">确认密码以重置图案</string>
     <string name="reset_pattern_message">这只是一个示例程序。\n\n点击“确定”以重置解锁图案。</string>
     <string name="pattern_reset">已重置解锁图案</string>
 
     <string name="about_title">关于</string>
-    <string name="about_name">PatternLock 库</string>
+    <string name="about_name">PatternLock</string>
     <string name="about_version">版本 %1$s</string>
     <string name="about_credit">张海 2016</string>
     <string name="about_github"><a href="https://github.com/DreaminginCodeZH/PatternLock">在 GitHub 上浏览</a></string>
