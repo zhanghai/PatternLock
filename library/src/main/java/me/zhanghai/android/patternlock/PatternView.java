@@ -542,18 +542,11 @@ public class PatternView extends View {
     }
 
     /**
-     * Disable input (for instance when displaying a message that will
-     * timeout so user doesn't get view into messy state).
+     * Enable or disable input. (for instance when displaying a message that will timeout so user
+     * doesn't get view into messy state).
      */
-    public void disableInput() {
-        mInputEnabled = false;
-    }
-
-    /**
-     * Enable input.
-     */
-    public void enableInput() {
-        mInputEnabled = true;
+    public void setInputEnabled(boolean enabled) {
+        mInputEnabled = enabled;
     }
 
     @Override
