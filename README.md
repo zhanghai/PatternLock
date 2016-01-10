@@ -18,13 +18,7 @@ The original view in AOSP is named `LockPatternView`, however I believe it is na
 
 This library aims to provide the basic but extensible building blocks for implementing pattern lock mechanism in an Android app. So the common usage will be extending the base Activity classes provided and overriding methods according to your need.
 
-This library also aims to be elegant. Code taken from AOSP was slightly refactored and renamed to be clear, and the `PatternView` now utilizes the Android resource system for customization. Moreover, tweaks for stealth mode and haptic feedback is done for better behavior.
-
-Currently this library is partly tailored to my own needs:
-
-* The `PatternView` code is taken just before the Material design adjusted its animation and styling, which keeps its Holo style, consistent to my aesthetics and production app.
-
-* This library is currently ICS-compatible, since Android 2.x are phasing out day by day, and I don't need to support them. (But it can be refactored to support older versions if anyone has the time.)
+This library also aims to be elegant. Code taken from AOSP was slightly refactored and renamed to be clear, and the `PatternView` now utilizes the Android resource system for customization.
 
 ## Usage
 
@@ -35,8 +29,8 @@ Here are some detailed usage documentation, and you can always refer to the samp
 First of all, you need to include the default styling in your theme, by adding:
 
 ```xml
-<item name="patternViewStyle">@style/PatternView.Holo</item>
-<!-- Or PatternView.Holo.Light, or your own style extending these two or not. -->
+<item name="patternViewStyle">@style/PatternView</item>
+<!-- Or PatternView.Light, or your own style extending these two or not. -->
 ```
 
 Or you can utilize the resource overriding trick by copying the `layout/base_pattern_activity.xml` from the library source to your application source, and modify it there (for instance PatternView attributes). Changes will override the original layout in this library.
@@ -58,38 +52,26 @@ Available `PatternView` attributes are, as in `attrs.xml`:
     <attr name="errorColor" format="color|reference" />
     <!-- Defines the success color. -->
     <attr name="successColor" format="color|reference"/>
-    <!-- Defines the color to use when drawing PatternView paths. -->
-    <attr name="pathColor" format="color|reference" />
-    <attr name="dotDrawableDefault" format="reference" />
-    <attr name="dotDrawableTouched" format="reference" />
-    <attr name="circleDrawableDefault" format="reference" />
-    <attr name="circleDrawable" format="reference" />
-    <attr name="arrowUpDrawable" format="reference" />
 </declare-styleable>
 ```
 
 And built-in styles, as in `styles.xml`:
 
 ```xml
-<style name="PatternView">
+<style name="Base.PatternView" parent="">
     <item name="aspect">square</item>
 </style>
 
-<style name="PatternView.Holo">
-    <item name="regularColor">@android:color/white</item>
-    <item name="errorColor">@android:color/holo_red_light</item>
-    <item name="successColor">@android:color/holo_green_light</item>
-    <item name="pathColor">@android:color/white</item>
-    <item name="dotDrawableDefault">@drawable/pl_patternview_dot_default</item>
-    <item name="dotDrawableTouched">@drawable/pl_patternview_dot_touched</item>
-    <item name="circleDrawableDefault">@drawable/pl_patternview_circle_default_alpha</item>
-    <item name="circleDrawable">@drawable/pl_patternview_circle_alpha</item>
-    <item name="arrowUpDrawable">@drawable/pl_patternview_arrow_alpha</item>
+<style name="PatternView" parent="Base.PatternView">
+    <item name="regularColor">?colorControlNormal</item>
+    <item name="errorColor">#fff4511e</item>
+    <item name="successColor">?colorControlActivated</item>
 </style>
 
-<style name="PatternView.Holo.Light">
-    <item name="regularColor">@android:color/black</item>
-    <item name="pathColor">@android:color/black</item>
+<style name="PatternView.Light" parent="Base.PatternView">
+    <item name="regularColor">?colorControlNormal</item>
+    <item name="errorColor">#fff4511e</item>
+    <item name="successColor">?colorControlActivated</item>
 </style>
 ```
 
@@ -139,7 +121,7 @@ public class SampleConfirmPatternActivity extends ConfirmPatternActivity {
 }
 ```
 
-Note that protected fields inherited from `BasePatternActivity`, such as `messageText` and `patternView`, are also there ready for your customization.
+Note that protected fields inherited from `BasePatternActivity`, such as `mMessageText` and `mPatternView`, are also there ready for your customization.
 
 ## Differences with android-lockpattern
 
