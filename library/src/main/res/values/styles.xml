@@ -7,15 +7,19 @@
 
 <resources>
 
-    <style name="PatternView">
+    <style name="Base.PatternView" parent="">
         <item name="aspect">square</item>
-        <item name="regularColor">@android:color/white</item>
-        <item name="errorColor">#fff4511e</item>
-        <item name="successColor">@android:color/white</item>
     </style>
 
-    <style name="PatternView.Light">
-        <item name="regularColor">@android:color/holo_blue_dark</item>
-        <item name="successColor">@android:color/holo_blue_dark</item>
+    <style name="PatternView" parent="Base.PatternView">
+        <item name="regularColor">@android:color/white</item>
+        <item name="errorColor">#fff4511e</item>
+        <item name="successColor">#ff80cbc4</item>
+    </style>
+
+    <style name="PatternView.Light" parent="Base.PatternView">
+        <item name="regularColor">#ff212121</item>
+        <item name="errorColor">#fff4511e</item>
+        <item name="successColor">#ff009688</item>
     </style>
 </resources>
