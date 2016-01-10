@@ -11,11 +11,11 @@
     <Preference
         android:title="@string/pref_title_pattern_lock">
         <intent
-            android:targetPackage="me.zhanghai.patternlock.sample"
-            android:targetClass="me.zhanghai.patternlock.sample.app.PatternLockActivity" />
+            android:targetPackage="me.zhanghai.android.patternlock.sample"
+            android:targetClass="me.zhanghai.android.patternlock.sample.app.PatternLockActivity" />
     </Preference>
 
-    <me.zhanghai.patternlock.sample.preference.ListPreferenceCompat
+    <me.zhanghai.android.patternlock.sample.preference.ListPreferenceCompat
         android:key="pref_key_theme"
         android:defaultValue="0"
         android:dialogTitle="@string/pref_dialog_title_theme"
@@ -27,7 +27,7 @@
     <Preference
         android:title="@string/pref_title_about">
         <intent
-            android:targetPackage="me.zhanghai.patternlock.sample"
-            android:targetClass="me.zhanghai.patternlock.sample.app.AboutActivity" />
+            android:targetPackage="me.zhanghai.android.patternlock.sample"
+            android:targetClass="me.zhanghai.android.patternlock.sample.app.AboutActivity" />
     </Preference>
 </PreferenceScreen>

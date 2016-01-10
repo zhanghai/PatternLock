@@ -8,7 +8,7 @@
     <version>7</version>
   </parent>
 
-  <groupId>me.zhanghai.patternlock</groupId>
+  <groupId>me.zhanghai.android.patternlock</groupId>
   <artifactId>parent</artifactId>
   <packaging>pom</packaging>
 

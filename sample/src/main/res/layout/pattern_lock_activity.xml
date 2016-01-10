@@ -11,5 +11,5 @@
     android:id="@+id/pattern_lock_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="me.zhanghai.patternlock.sample.app.PatternLockFragment"
+    android:name="me.zhanghai.android.patternlock.sample.app.PatternLockFragment"
     tools:context=".PatternLockActivity" />

@@ -5,6 +5,4 @@
   ~ All Rights Reserved.
   -->
 
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.zhanghai.patternlock" />
+<manifest package="me.zhanghai.android.patternlock" />
