@@ -133,10 +133,6 @@ I know there is already a library named [android-lockpattern](https://code.googl
 
  So here are the major differences.
 
-* That project is hosted on Google Code using `hg`, while this project is hosted on GitHub using `git`.
-
-* That project is Eclipse based, while this project is developed using Android Studio.
-
 * That project is prefixing its resources using `alp_42447968`, while this project is prefixing its resources using `pl`, and I prefer simplicity to that "security".
 
 * That project provides a bunch of mechanisms and extras for its `Activity` (and with some private methods :( ), none of which I found suitable for my use case, while this project provides a bunch of methods to override to meet your need.
