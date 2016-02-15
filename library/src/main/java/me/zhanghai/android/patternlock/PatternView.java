@@ -283,7 +283,7 @@ public class PatternView extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PatternView, defStyleAttr,
                 0);
 
-        final String aspect = a.getString(R.styleable.PatternView_aspect);
+        final String aspect = a.getString(R.styleable.PatternView_pl_aspect);
 
         if ("square".equals(aspect)) {
             mAspect = ASPECT_SQUARE;
@@ -304,9 +304,9 @@ public class PatternView extends View {
         //mRegularColor = context.getColor(R.color.lock_pattern_view_regular_color);
         //mErrorColor = context.getColor(R.color.lock_pattern_view_error_color);
         //mSuccessColor = context.getColor(R.color.lock_pattern_view_success_color);
-        mRegularColor = a.getColor(R.styleable.PatternView_regularColor, mRegularColor);
-        mErrorColor = a.getColor(R.styleable.PatternView_errorColor, mErrorColor);
-        mSuccessColor = a.getColor(R.styleable.PatternView_successColor, mSuccessColor);
+        mRegularColor = a.getColor(R.styleable.PatternView_pl_regularColor, mRegularColor);
+        mErrorColor = a.getColor(R.styleable.PatternView_pl_errorColor, mErrorColor);
+        mSuccessColor = a.getColor(R.styleable.PatternView_pl_successColor, mSuccessColor);
 
         a.recycle();
 

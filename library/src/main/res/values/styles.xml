@@ -8,18 +8,18 @@
 <resources>
 
     <style name="Base.PatternView" parent="">
-        <item name="aspect">square</item>
+        <item name="pl_aspect">square</item>
     </style>
 
     <style name="PatternView" parent="Base.PatternView">
-        <item name="regularColor">?colorControlNormal</item>
-        <item name="errorColor">#fff4511e</item>
-        <item name="successColor">?colorControlActivated</item>
+        <item name="pl_regularColor">?colorControlNormal</item>
+        <item name="pl_errorColor">#fff4511e</item>
+        <item name="pl_successColor">?colorControlActivated</item>
     </style>
 
     <style name="PatternView.Light" parent="Base.PatternView">
-        <item name="regularColor">?colorControlNormal</item>
-        <item name="errorColor">#fff4511e</item>
-        <item name="successColor">?colorControlActivated</item>
+        <item name="pl_regularColor">?colorControlNormal</item>
+        <item name="pl_errorColor">#fff4511e</item>
+        <item name="pl_successColor">?colorControlActivated</item>
     </style>
 </resources>

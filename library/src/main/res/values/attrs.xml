@@ -9,18 +9,18 @@
 
     <declare-styleable name="PatternView">
         <!-- Defines the aspect to use when drawing PatternView. -->
-        <attr name="aspect">
+        <attr name="pl_aspect">
             <!-- Square; the default value. -->
             <enum name="square" value="0" />
             <enum name="lock_width" value="1" />
             <enum name="lock_height" value="2" />
         </attr>
         <!-- Defines the regular pattern color. -->
-        <attr name="regularColor" format="color|reference" />
+        <attr name="pl_regularColor" format="color|reference" />
         <!-- Defines the error color. -->
-        <attr name="errorColor" format="color|reference" />
+        <attr name="pl_errorColor" format="color|reference" />
         <!-- Defines the success color. -->
-        <attr name="successColor" format="color|reference"/>
+        <attr name="pl_successColor" format="color|reference"/>
     </declare-styleable>
 
     <declare-styleable name="PatternLockTheme">
