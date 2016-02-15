@@ -44,18 +44,18 @@ Available `PatternView` attributes are, as in `attrs.xml`:
 ```xml
 <declare-styleable name="PatternView">
     <!-- Defines the aspect to use when drawing PatternView. -->
-    <attr name="aspect">
+    <attr name="pl_aspect">
         <!-- Square; the default value. -->
         <enum name="square" value="0" />
         <enum name="lock_width" value="1" />
         <enum name="lock_height" value="2" />
     </attr>
     <!-- Defines the regular pattern color. -->
-    <attr name="regularColor" format="color|reference" />
+    <attr name="pl_regularColor" format="color|reference" />
     <!-- Defines the error color. -->
-    <attr name="errorColor" format="color|reference" />
+    <attr name="pl_errorColor" format="color|reference" />
     <!-- Defines the success color. -->
-    <attr name="successColor" format="color|reference"/>
+    <attr name="pl_successColor" format="color|reference"/>
 </declare-styleable>
 ```
 
@@ -63,19 +63,19 @@ And built-in styles, as in `styles.xml`:
 
 ```xml
 <style name="Base.PatternView" parent="">
-    <item name="aspect">square</item>
+    <item name="pl_aspect">square</item>
 </style>
 
 <style name="PatternView" parent="Base.PatternView">
-    <item name="regularColor">?colorControlNormal</item>
-    <item name="errorColor">#fff4511e</item>
-    <item name="successColor">?colorControlActivated</item>
+    <item name="pl_regularColor">?colorControlNormal</item>
+    <item name="pl_errorColor">#fff4511e</item>
+    <item name="pl_successColor">?colorControlActivated</item>
 </style>
 
 <style name="PatternView.Light" parent="Base.PatternView">
-    <item name="regularColor">?colorControlNormal</item>
-    <item name="errorColor">#fff4511e</item>
-    <item name="successColor">?colorControlActivated</item>
+    <item name="pl_regularColor">?colorControlNormal</item>
+    <item name="pl_errorColor">#fff4511e</item>
+    <item name="pl_successColor">?colorControlActivated</item>
 </style>
 ```
 
