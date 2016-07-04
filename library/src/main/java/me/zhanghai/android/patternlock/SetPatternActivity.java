@@ -28,7 +28,7 @@ public class SetPatternActivity extends BasePatternActivity
         public final int textId;
         public final boolean enabled;
 
-        private LeftButtonState(int textId, boolean enabled) {
+        LeftButtonState(int textId, boolean enabled) {
             this.textId = textId;
             this.enabled = enabled;
         }
@@ -44,7 +44,7 @@ public class SetPatternActivity extends BasePatternActivity
         public final int textId;
         public final boolean enabled;
 
-        private RightButtonState(int textId, boolean enabled) {
+        RightButtonState(int textId, boolean enabled) {
             this.textId = textId;
             this.enabled = enabled;
         }
@@ -70,8 +70,8 @@ public class SetPatternActivity extends BasePatternActivity
         public final RightButtonState rightButtonState;
         public final boolean patternEnabled;
 
-        private Stage(int messageId, LeftButtonState leftButtonState,
-                      RightButtonState rightButtonState, boolean patternEnabled) {
+        Stage(int messageId, LeftButtonState leftButtonState, RightButtonState rightButtonState,
+              boolean patternEnabled) {
             this.messageId = messageId;
             this.leftButtonState = leftButtonState;
             this.rightButtonState = rightButtonState;
@@ -82,15 +82,15 @@ public class SetPatternActivity extends BasePatternActivity
     private static final String KEY_STAGE = "stage";
     private static final String KEY_PATTERN = "pattern";
 
-    private int minPatternSize;
-    private List<PatternView.Cell> pattern;
-    private Stage stage;
+    private int mMinPatternSize;
+    private List<PatternView.Cell> mPattern;
+    private Stage mStage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        minPatternSize = getMinPatternSize();
+        mMinPatternSize = getMinPatternSize();
 
         mPatternView.setOnPatternListener(this);
         mLeftButton.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +111,7 @@ public class SetPatternActivity extends BasePatternActivity
         } else {
             String patternString = savedInstanceState.getString(KEY_PATTERN);
             if (patternString != null) {
-                pattern = PatternUtils.stringToPattern(patternString);
+                mPattern = PatternUtils.stringToPattern(patternString);
             }
             updateStage(Stage.values()[savedInstanceState.getInt(KEY_STAGE)]);
         }
@@ -121,9 +121,9 @@ public class SetPatternActivity extends BasePatternActivity
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putInt(KEY_STAGE, stage.ordinal());
-        if (pattern != null) {
-            outState.putString(KEY_PATTERN, PatternUtils.patternToString(pattern));
+        outState.putInt(KEY_STAGE, mStage.ordinal());
+        if (mPattern != null) {
+            outState.putString(KEY_PATTERN, PatternUtils.patternToString(mPattern));
         }
     }
 
@@ -143,26 +143,26 @@ public class SetPatternActivity extends BasePatternActivity
 
     @Override
     public void onPatternDetected(List<PatternView.Cell> newPattern) {
-        switch (stage) {
+        switch (mStage) {
             case Draw:
             case DrawTooShort:
-                if (newPattern.size() < minPatternSize) {
+                if (newPattern.size() < mMinPatternSize) {
                     updateStage(Stage.DrawTooShort);
                 } else {
-                    pattern = new ArrayList<>(newPattern);
+                    mPattern = new ArrayList<>(newPattern);
                     updateStage(Stage.DrawValid);
                 }
                 break;
             case Confirm:
             case ConfirmWrong:
-                if (newPattern.equals(pattern)) {
+                if (newPattern.equals(mPattern)) {
                     updateStage(Stage.ConfirmCorrect);
                 } else {
                     updateStage(Stage.ConfirmWrong);
                 }
                 break;
             default:
-                throw new IllegalStateException("Unexpected stage " + stage + " when "
+                throw new IllegalStateException("Unexpected stage " + mStage + " when "
                         + "entering the pattern.");
         }
     }
@@ -173,31 +173,31 @@ public class SetPatternActivity extends BasePatternActivity
     }
 
     private void onLeftButtonClicked() {
-        if (stage.leftButtonState == LeftButtonState.Redraw) {
-            pattern = null;
+        if (mStage.leftButtonState == LeftButtonState.Redraw) {
+            mPattern = null;
             updateStage(Stage.Draw);
-        } else if (stage.leftButtonState == LeftButtonState.Cancel) {
+        } else if (mStage.leftButtonState == LeftButtonState.Cancel) {
             setResult(RESULT_CANCELED);
             finish();
         } else {
-            throw new IllegalStateException("left footer button pressed, but stage of " + stage
+            throw new IllegalStateException("left footer button pressed, but stage of " + mStage
                     + " doesn't make sense");
         }
     }
 
     private void onRightButtonClicked() {
-        if (stage.rightButtonState == RightButtonState.Continue) {
-            if (stage != Stage.DrawValid) {
+        if (mStage.rightButtonState == RightButtonState.Continue) {
+            if (mStage != Stage.DrawValid) {
                 throw new IllegalStateException("expected ui stage " + Stage.DrawValid
                         + " when button is " + RightButtonState.Continue);
             }
             updateStage(Stage.Confirm);
-        } else if (stage.rightButtonState == RightButtonState.Confirm) {
-            if (stage != Stage.ConfirmCorrect) {
+        } else if (mStage.rightButtonState == RightButtonState.Confirm) {
+            if (mStage != Stage.ConfirmCorrect) {
                 throw new IllegalStateException("expected ui stage " + Stage.ConfirmCorrect
                         + " when button is " + RightButtonState.Confirm);
             }
-            onSetPattern(pattern);
+            onSetPattern(mPattern);
             setResult(RESULT_OK);
             finish();
         }
@@ -205,24 +205,24 @@ public class SetPatternActivity extends BasePatternActivity
 
     private void updateStage(Stage newStage) {
 
-        Stage previousStage = stage;
-        stage = newStage;
+        Stage previousStage = mStage;
+        mStage = newStage;
 
-        if (stage == Stage.DrawTooShort) {
-            mMessageText.setText(getString(stage.messageId, minPatternSize));
+        if (mStage == Stage.DrawTooShort) {
+            mMessageText.setText(getString(mStage.messageId, mMinPatternSize));
         } else {
-            mMessageText.setText(stage.messageId);
+            mMessageText.setText(mStage.messageId);
         }
 
-        mLeftButton.setText(stage.leftButtonState.textId);
-        mLeftButton.setEnabled(stage.leftButtonState.enabled);
+        mLeftButton.setText(mStage.leftButtonState.textId);
+        mLeftButton.setEnabled(mStage.leftButtonState.enabled);
 
-        mRightButton.setText(stage.rightButtonState.textId);
-        mRightButton.setEnabled(stage.rightButtonState.enabled);
+        mRightButton.setText(mStage.rightButtonState.textId);
+        mRightButton.setEnabled(mStage.rightButtonState.enabled);
 
-        mPatternView.setInputEnabled(stage.patternEnabled);
+        mPatternView.setInputEnabled(mStage.patternEnabled);
 
-        switch (stage) {
+        switch (mStage) {
             case Draw:
                 // clearPattern() resets display mode to DisplayMode.Correct.
                 mPatternView.clearPattern();
@@ -246,7 +246,7 @@ public class SetPatternActivity extends BasePatternActivity
 
         // If the stage changed, announce the header for accessibility. This
         // is a no-op when accessibility is disabled.
-        if (previousStage != stage) {
+        if (previousStage != mStage) {
             ViewAccessibilityCompat.announceForAccessibility(mMessageText, mMessageText.getText());
         }
     }

@@ -21,7 +21,7 @@ public class ConfirmPatternActivity extends BasePatternActivity
 
     public static final int RESULT_FORGOT_PASSWORD = RESULT_FIRST_USER;
 
-    protected int numFailedAttempts;
+    protected int mNumFailedAttempts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +47,9 @@ public class ConfirmPatternActivity extends BasePatternActivity
         ViewAccessibilityCompat.announceForAccessibility(mMessageText, mMessageText.getText());
 
         if (savedInstanceState == null) {
-            numFailedAttempts = 0;
+            mNumFailedAttempts = 0;
         } else {
-            numFailedAttempts = savedInstanceState.getInt(KEY_NUM_FAILED_ATTEMPTS);
+            mNumFailedAttempts = savedInstanceState.getInt(KEY_NUM_FAILED_ATTEMPTS);
         }
     }
 
@@ -57,7 +57,7 @@ public class ConfirmPatternActivity extends BasePatternActivity
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putInt(KEY_NUM_FAILED_ATTEMPTS, numFailedAttempts);
+        outState.putInt(KEY_NUM_FAILED_ATTEMPTS, mNumFailedAttempts);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class ConfirmPatternActivity extends BasePatternActivity
     }
 
     protected void onWrongPattern() {
-        ++numFailedAttempts;
+        ++mNumFailedAttempts;
     }
 
     protected void onCancel() {
