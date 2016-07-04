@@ -177,12 +177,16 @@ public class SetPatternActivity extends BasePatternActivity
             mPattern = null;
             updateStage(Stage.Draw);
         } else if (mStage.leftButtonState == LeftButtonState.Cancel) {
-            setResult(RESULT_CANCELED);
-            finish();
+            onCanceled();
         } else {
             throw new IllegalStateException("left footer button pressed, but stage of " + mStage
                     + " doesn't make sense");
         }
+    }
+
+    protected void onCanceled() {
+        setResult(RESULT_CANCELED);
+        finish();
     }
 
     private void onRightButtonClicked() {
@@ -198,9 +202,13 @@ public class SetPatternActivity extends BasePatternActivity
                         + " when button is " + RightButtonState.Confirm);
             }
             onSetPattern(mPattern);
-            setResult(RESULT_OK);
-            finish();
+            onConfirmed();
         }
+    }
+
+    protected void onConfirmed() {
+        setResult(RESULT_OK);
+        finish();
     }
 
     private void updateStage(Stage newStage) {
