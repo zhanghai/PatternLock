@@ -4,7 +4,7 @@ An Android library for pattern lock.
 
 ![Sample](./screenshot/sample_small.png)
 
-[Sample Application](//github.com/DreaminginCodeZH/PatternLock/releases/download/v2.0.3/sample-release.apk)
+[Sample Application](//github.com/DreaminginCodeZH/PatternLock/releases/download/v2.0.4/sample-release.apk)
 
 ## PatternLock or LockPattern?
 
@@ -21,7 +21,7 @@ This library also aims to be elegant. Code taken from AOSP was slightly refactor
 Gradle:
 
 ```gradle
-compile 'me.zhanghai.android.patternlock:library:2.0.3'
+compile 'me.zhanghai.android.patternlock:library:2.0.4'
 ```
 
 ## Usage
