@@ -41,14 +41,14 @@ buildscript {
     }
 }
 
-apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'android-apt'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:preference-v7:24.0.0'
     compile 'com.android.support:preference-v14:24.0.0'
-    compile 'com.jakewharton:butterknife:8.0.1'
+    compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile project(':library')
 }
