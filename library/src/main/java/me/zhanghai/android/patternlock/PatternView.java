@@ -268,7 +268,6 @@ public class PatternView extends View {
 
         mRowCount = a.getInteger(R.styleable.PatternView_pl_rowCount, PATTERN_SIZE_DEFAULT);
         mColumnCount = a.getInteger(R.styleable.PatternView_pl_columnCount, PATTERN_SIZE_DEFAULT);
-        updatePatternSize();
 
         final String aspect = a.getString(R.styleable.PatternView_pl_aspect);
 
@@ -310,6 +309,8 @@ public class PatternView extends View {
 
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
+
+        updatePatternSize();
 
         mFastOutSlowInInterpolator = new FastOutSlowInInterpolator();
         mLinearOutSlowInInterpolator = new LinearOutSlowInInterpolator();
