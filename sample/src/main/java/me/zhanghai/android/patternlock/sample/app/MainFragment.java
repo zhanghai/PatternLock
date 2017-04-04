@@ -7,17 +7,19 @@ package me.zhanghai.android.patternlock.sample.app;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.annotation.Nullable;
+
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompatDividers;
 
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.PreferenceContract;
 import me.zhanghai.android.patternlock.sample.util.PreferenceUtils;
 
-public class MainFragment extends PreferenceFragmentCompat
+public class MainFragment extends PreferenceFragmentCompatDividers
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_main);
     }
 

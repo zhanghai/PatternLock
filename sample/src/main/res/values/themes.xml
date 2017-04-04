@@ -7,41 +7,19 @@
 
 <resources>
 
-    <color name="preference_fallback_accent_color">@color/accent_material_light</color>
-
-    <style name="Base.ThemeOverlay.Preference" parent="">
-
-        <item name="listPreferredItemPaddingLeft">@dimen/screen_edge_horizontal_margin</item>
-        <item name="listPreferredItemPaddingRight">@dimen/screen_edge_horizontal_margin</item>
-
-        <item name="preferenceScreenStyle">@style/Preference.PreferenceScreen.Material</item>
-        <item name="preferenceFragmentStyle">@style/PreferenceFragment</item>
-        <item name="preferenceCategoryStyle">@style/Preference.Category.Material</item>
-        <item name="preferenceStyle">@style/Preference.Material</item>
-        <item name="preferenceInformationStyle">@style/Preference.Information.Material</item>
-        <item name="checkBoxPreferenceStyle">@style/Preference.CheckBoxPreference.Material</item>
-        <item name="switchPreferenceCompatStyle">@style/Preference.SwitchPreferenceCompat.Material</item>
-        <item name="switchPreferenceStyle">@style/Preference.SwitchPreference.Material</item>
-        <item name="dialogPreferenceStyle">@style/Preference.DialogPreference.Material</item>
-        <item name="editTextPreferenceStyle">@style/Preference.DialogPreference.EditTextPreference.Material</item>
-        <item name="preferenceFragmentListStyle">@style/PreferenceFragmentList.Material</item>
-    </style>
-
-    <style name="ThemeOverlay.Preference" parent="Base.ThemeOverlay.Preference" />
-
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="PreferenceFixTheme.Light.DarkActionBar">
         <item name="android:windowDisablePreview">true</item>
         <item name="colorPrimary">#ff263238</item>
         <item name="colorPrimaryDark">#ff21272b</item>
         <item name="colorControlNormal">@color/material_blue_grey_800</item>
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
+        <item name="preferenceCategory_marginBottom">0dp</item>
         <item name="patternViewStyle">@style/PatternView.Light</item>
     </style>
 
-    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+    <style name="AppTheme.Dark" parent="PreferenceFixTheme">
         <item name="android:windowDisablePreview">true</item>
-        <item name="preferenceTheme">@style/ThemeOverlay.Preference</item>
+        <item name="preferenceCategory_marginBottom">0dp</item>
         <item name="patternViewStyle">@style/PatternView</item>
     </style>
 </resources>
