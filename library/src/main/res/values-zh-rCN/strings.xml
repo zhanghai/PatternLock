@@ -24,7 +24,7 @@
     <string name="pl_access_pattern_start">"开始绘制图案"</string>
     <string name="pl_access_pattern_cleared">"图案已清除"</string>
     <string name="pl_access_pattern_cell_added">"已添加单元格"</string>
-    <string name="pl_access_pattern_cell_added_verbose">"已添加圆点 <xliff:g id="CELL_INDEX">%1$s</xliff:g>"</string>
+    <string name="pl_access_pattern_cell_added_verbose">"已添加圆点 <xliff:g id="CELL_INDEX">%1$d</xliff:g>"</string>
     <string name="pl_access_pattern_detected">"图案绘制完成"</string>
     <string name="pl_access_pattern_area">"图案区域。"</string>
 </resources>
