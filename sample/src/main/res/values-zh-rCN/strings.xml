@@ -40,6 +40,6 @@
     <string name="about_title">关于</string>
     <string name="about_name">PatternLock</string>
     <string name="about_version">版本 %1$s</string>
-    <string name="about_credit">张海 2016</string>
+    <string name="about_credit">张海 2016, 2017</string>
     <string name="about_github"><a href="https://github.com/DreaminginCodeZH/PatternLock">在 GitHub 上浏览</a></string>
 </resources>
