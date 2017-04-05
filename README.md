@@ -135,6 +135,8 @@ public class SampleConfirmPatternActivity extends ConfirmPatternActivity {
 
 Note that protected fields inherited from `BasePatternActivity`, such as `mMessageText` and `mPatternView`, are also there ready for your customization.
 
+You can check out the sample app's [`PatternLockActivity`](sample/src/main/java/me/zhanghai/android/patternlock/sample/app/PatternLockActivity.java) for implementing a pattern-locked `Activity`.
+
 ## Differences with android-lockpattern
 
 I know there is already a library named [android-lockpattern](https://code.google.com/p/android-lockpattern/), and I tried it for a whole day before I started writing this "yet another".

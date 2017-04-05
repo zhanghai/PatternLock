@@ -82,6 +82,7 @@ public class PatternLockActivity extends ThemedAppCompatActivity
     @Override
     public void onConfirmPatternResult(boolean successful) {
         if (successful) {
+            // Throws IllegalStateException if we add our fragment now.
             mShouldAddFragment = true;
         } else {
             finish();
