@@ -69,6 +69,8 @@ And built-in styles, as in `styles.xml`:
 
 ```xml
 <style name="Base.PatternView" parent="">
+    <item name="pl_rowCount">3</item>
+    <item name="pl_columnCount">3</item>
     <item name="pl_aspect">square</item>
 </style>
 
