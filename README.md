@@ -16,6 +16,8 @@ This library aims to provide the basic but extensible building blocks for implem
 
 This library also aims to be elegant. Code taken from AOSP was slightly refactored and renamed to be clear, and the `PatternView` now utilizes the Android resource system for customization.
 
+This library added support for variable pattern sizes, so that you can use pattern sizes other than framework's hard-coded 3x3 setup by setting `app:pl_rowCount` and `app:pl_columnCount`.
+
 ## Integration
 
 Gradle:
