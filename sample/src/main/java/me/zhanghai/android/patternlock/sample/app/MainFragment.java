@@ -18,6 +18,10 @@ import me.zhanghai.android.patternlock.sample.util.PreferenceUtils;
 public class MainFragment extends PreferenceFragmentCompatDividers
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    public static MainFragment newInstance() {
+        return new MainFragment();
+    }
+
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_main);

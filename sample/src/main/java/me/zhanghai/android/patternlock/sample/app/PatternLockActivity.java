@@ -9,15 +9,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
+import me.zhanghai.android.patternlock.sample.util.FragmentUtils;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 
-public class PatternLockActivity extends ThemedAppCompatActivity {
+public class PatternLockActivity extends ThemedAppCompatActivity
+        implements PatternLockUtils.OnConfirmPatternResultListener {
 
-    private static final String KEY_CONFIRM_STARTED = "confirm_started";
+    private static final String KEY_CONFIRM_PATTERN_STARTED = "confirm_pattern_started";
+    private static final String KEY_SHOULD_ADD_FRAGMENT = "should_add_fragment";
 
-    private boolean mConfirmStarted = false;
+    private boolean mConfirmPatternStarted = false;
+    private boolean mShouldAddFragment = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +28,26 @@ public class PatternLockActivity extends ThemedAppCompatActivity {
 
         AppUtils.setActionBarDisplayUp(this);
 
-        setContentView(R.layout.pattern_lock_activity);
+        // Calls ensureSubDecor().
+        findViewById(android.R.id.content);
 
         if (savedInstanceState != null) {
-            mConfirmStarted = savedInstanceState.getBoolean(KEY_CONFIRM_STARTED);
+            mConfirmPatternStarted = savedInstanceState.getBoolean(KEY_CONFIRM_PATTERN_STARTED);
+            mShouldAddFragment = savedInstanceState.getBoolean(KEY_SHOULD_ADD_FRAGMENT);
         }
-        if (!mConfirmStarted) {
+        if (!mConfirmPatternStarted) {
             PatternLockUtils.confirmPatternIfHas(this);
-            mConfirmStarted = true;
+            mConfirmPatternStarted = true;
+        }
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        if (mShouldAddFragment) {
+            FragmentUtils.add(PatternLockFragment.newInstance(), this, android.R.id.content);
+            mShouldAddFragment = false;
         }
     }
 
@@ -40,7 +55,8 @@ public class PatternLockActivity extends ThemedAppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putBoolean(KEY_CONFIRM_STARTED, mConfirmStarted);
+        outState.putBoolean(KEY_CONFIRM_PATTERN_STARTED, mConfirmPatternStarted);
+        outState.putBoolean(KEY_SHOULD_ADD_FRAGMENT, mShouldAddFragment);
     }
 
     @Override
@@ -57,9 +73,18 @@ public class PatternLockActivity extends ThemedAppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (PatternLockUtils.checkConfirmPatternResult(this, requestCode, resultCode)) {
-            mConfirmStarted = false;
+            // Do nothing.
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onConfirmPatternResult(boolean successful) {
+        if (successful) {
+            mShouldAddFragment = true;
+        } else {
+            finish();
         }
     }
 }

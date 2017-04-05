@@ -21,6 +21,8 @@ public class PatternLockUtils {
 
     public static final int REQUEST_CODE_CONFIRM_PATTERN = 1214;
 
+    private PatternLockUtils() {}
+
     public static void setPattern(List<PatternView.Cell> pattern, Context context) {
         PreferenceUtils.putString(PreferenceContract.KEY_PATTERN_SHA1,
                 PatternUtils.patternToSha1String(pattern), context);
@@ -63,15 +65,17 @@ public class PatternLockUtils {
         }
     }
 
-    public static boolean checkConfirmPatternResult(Activity activity, int requestCode,
-                                                    int resultCode) {
-        if (requestCode == REQUEST_CODE_CONFIRM_PATTERN && resultCode != Activity.RESULT_OK) {
-            activity.finish();
+    public static <ActivityType extends Activity & OnConfirmPatternResultListener> boolean
+            checkConfirmPatternResult(ActivityType activity, int requestCode, int resultCode) {
+        if (requestCode == REQUEST_CODE_CONFIRM_PATTERN) {
+            activity.onConfirmPatternResult(resultCode == Activity.RESULT_OK);
             return true;
         } else {
             return false;
         }
     }
 
-    private PatternLockUtils() {}
+    public interface OnConfirmPatternResultListener {
+        void onConfirmPatternResult(boolean successful);
+    }
 }

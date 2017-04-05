@@ -16,6 +16,10 @@ import me.zhanghai.android.patternlock.sample.preference.ClearPatternPreference;
 
 public class PatternLockFragment extends PreferenceFragmentCompatDividers {
 
+    public static PatternLockFragment newInstance() {
+        return new PatternLockFragment();
+    }
+
     @Override
     public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences_pattern_lock);
