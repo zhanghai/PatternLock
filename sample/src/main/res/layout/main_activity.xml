@@ -12,4 +12,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:name="me.zhanghai.android.patternlock.sample.app.MainFragment"
-    tools:context=".MainActivity" />
+    tools:context=".app.MainActivity" />

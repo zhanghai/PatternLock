@@ -13,7 +13,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="vertical"
     android:showDividers="middle"
-    tools:context=".ResetPatternActivity">
+    tools:context=".app.ResetPatternActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
