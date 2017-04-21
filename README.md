@@ -1,6 +1,6 @@
 # PatternLock
 
-An Android library for pattern lock.
+A Material Design Pattern Lock library with auth flow implementation.
 
 ## Why PatterLock?
 
