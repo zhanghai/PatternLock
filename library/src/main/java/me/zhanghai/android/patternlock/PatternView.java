@@ -673,7 +673,7 @@ public class PatternView extends View {
      *
      * @throws IllegalArgumentException if {@code a < 0} or {@code b < 0}
      */
-    public static int gcd(int a, int b) {
+    private static int gcd(int a, int b) {
 
         /*
          * The reason we require both arguments to be >= 0 is because otherwise, what do you return
