@@ -7,7 +7,7 @@ An Android library for pattern lock.
 - Battle-tested framework implementation with necessary modifications.
 - Supports XML attributes for customization.
 - Supports variable MxN pattern size.
-- Provides a drop-in implementation of the create-and-confirm / verify flow, the same as the framework Settings app.
+- Provides a drop-in implementation of the boilerplate create-and-confirm / verify flow, the same as the framework Settings app.
 - Provides a detailed example of integration in sample app source, e.g. implementing protected UI, theme switching.
 
 ## Preview
@@ -16,8 +16,10 @@ An Android library for pattern lock.
 
 [Sample APK](https://github.com/DreaminginCodeZH/PatternLock/releases/download/v2.1.1/sample-release.apk)
 
+<p>
 <img src="screenshot/sample-1.png" width="49%">
 <img src="screenshot/sample-2.png" width="49%">
+</p>
 
 ## Design
 
