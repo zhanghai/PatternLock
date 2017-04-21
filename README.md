@@ -4,7 +4,7 @@ An Android library for pattern lock.
 
 ![Sample](./screenshot/sample_small.png)
 
-[Sample Application](//github.com/DreaminginCodeZH/PatternLock/releases/download/v2.1.0/sample-release.apk)
+[Sample Application](//github.com/DreaminginCodeZH/PatternLock/releases/download/v2.1.1/sample-release.apk)
 
 ## PatternLock or LockPattern?
 
@@ -23,7 +23,7 @@ This library added support for variable pattern sizes, so that you can use patte
 Gradle:
 
 ```gradle
-compile 'me.zhanghai.android.patternlock:library:2.1.0'
+compile 'me.zhanghai.android.patternlock:library:2.1.1'
 ```
 
 ## Usage
