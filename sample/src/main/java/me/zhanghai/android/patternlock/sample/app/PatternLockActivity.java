@@ -34,6 +34,8 @@ public class PatternLockActivity extends ThemedAppCompatActivity
         if (savedInstanceState != null) {
             mConfirmPatternStarted = savedInstanceState.getBoolean(KEY_CONFIRM_PATTERN_STARTED);
             mShouldAddFragment = savedInstanceState.getBoolean(KEY_SHOULD_ADD_FRAGMENT);
+        } else {
+            mShouldAddFragment = !PatternLockUtils.hasPattern(this);
         }
         if (!mConfirmPatternStarted) {
             PatternLockUtils.confirmPatternIfHas(this);
