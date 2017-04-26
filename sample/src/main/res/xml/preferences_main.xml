@@ -11,7 +11,7 @@
     <Preference
         android:title="@string/pref_title_pattern_lock">
         <intent
-            android:targetPackage="me.zhanghai.android.patternlock.sample"
+            android:targetPackage="me.zhanghai.android.patternlock.sample2"
             android:targetClass="me.zhanghai.android.patternlock.sample.app.PatternLockActivity" />
     </Preference>
 
@@ -27,7 +27,7 @@
     <Preference
         android:title="@string/pref_title_about">
         <intent
-            android:targetPackage="me.zhanghai.android.patternlock.sample"
+            android:targetPackage="me.zhanghai.android.patternlock.sample2"
             android:targetClass="me.zhanghai.android.patternlock.sample.app.AboutActivity" />
     </Preference>
 </PreferenceScreen>
