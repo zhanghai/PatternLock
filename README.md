@@ -14,7 +14,7 @@ A Material Design Pattern Lock library with auth flow implementation.
 
 <a href="https://play.google.com/store/apps/details?id=me.zhanghai.android.patternlock.sample2" target="_blank"><img alt="Google Play" height="90" src="https://play.google.com/intl/en_US/badges/images/generic/en_badge_web_generic.png"/></a>
 
-[Sample APK](https://github.com/DreaminginCodeZH/PatternLock/releases/download/v2.1.1/sample-release.apk)
+[Sample APK](https://github.com/DreaminginCodeZH/PatternLock/releases/download/v2.1.2/sample-release.apk)
 
 <p>
 <img src="screenshot/sample-1.png" width="49%">
@@ -34,7 +34,7 @@ This library added support for variable pattern sizes, so that you can use patte
 Gradle:
 
 ```gradle
-compile 'me.zhanghai.android.patternlock:library:2.1.1'
+compile 'me.zhanghai.android.patternlock:library:2.1.2'
 ```
 
 ## Usage
