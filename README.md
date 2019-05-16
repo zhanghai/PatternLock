@@ -14,7 +14,7 @@ A Material Design Pattern Lock library with auth flow implementation.
 
 <a href="https://play.google.com/store/apps/details?id=me.zhanghai.android.patternlock.sample2" target="_blank"><img alt="Google Play" height="90" src="https://play.google.com/intl/en_US/badges/images/generic/en_badge_web_generic.png"/></a>
 
-[Sample APK](https://github.com/DreaminginCodeZH/PatternLock/releases/download/v2.1.2/sample-release.apk)
+[Sample APK](https://github.com/zhanghai/PatternLock/releases/download/v2.1.2/sample-release.apk)
 
 <p>
 <img src="screenshot/sample-1.png" width="49%">
@@ -166,7 +166,7 @@ I know there is already a library named [android-lockpattern](https://code.googl
 
 ## Legacy version
 
-There was a legacy version of this library with Android Design (Holo) appearance and native Activity. If you still want that version, checkout [this](//github.com/DreaminginCodeZH/PatternLock/tree/0d82d0a1b5a01b7dcf206363012c339969c7a63d).
+There was a legacy version of this library with Android Design (Holo) appearance and native Activity. If you still want that version, checkout [this](//github.com/zhanghai/PatternLock/tree/0d82d0a1b5a01b7dcf206363012c339969c7a63d).
 
 ## License
 
